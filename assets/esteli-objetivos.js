@@ -87,54 +87,54 @@ const EsteliObjetivos = (() => {
   const route = key => '#45/' + key;
 
   const dictionarySections = [
-    ['Cómo se arma el anuncio',[
-      ['Campaña','Es el plan general. Ahí elegís qué querés lograr con tus anuncios.'],
-      ['Conjunto de anuncios','Es donde elegís a quién mostrarle el anuncio, dónde esperás que actúe y qué resultado querés priorizar.'],
-      ['Anuncio','Es lo que ve la gente: la foto o el video, el texto y el botón.'],
-      ['Objetivo de campaña','Es tu meta principal. Por ejemplo, que más personas conozcan Estelí Tours.'],
-      ['Ubicación de conversión','Es dónde querés que pase la acción: en el anuncio, en tu sitio web, en un formulario, en WhatsApp o en una app.'],
-      ['Objetivo de rendimiento','Es el resultado que le pedís a Meta que busque más. Por ejemplo, visitas a tu página.'],
-      ['Maximizar','Significa buscar la mayor cantidad posible de un resultado con el presupuesto disponible.'],
-      ['Llamada a la acción (CTA)','Es lo que invitás a hacer. El botón puede decir «Más información», «Reservar» o «Enviar mensaje».'],
-      ['Vista previa','Es una muestra de cómo se vería el anuncio antes de publicarlo.'],
-      ['Métrica','Es un número que te muestra qué pasó. Por ejemplo, cuántas personas vieron el anuncio.']
+    ['Estructura y configuración de una campaña',[
+      ['Campaña','Nivel donde se define el objetivo publicitario. Una campaña puede agrupar varios conjuntos de anuncios.'],
+      ['Conjunto de anuncios','Nivel donde se configura a qué público se dirige el anuncio, dónde puede mostrarse y qué resultado se prioriza.'],
+      ['Anuncio','Pieza publicitaria que ve el público. Puede incluir una imagen o un video, texto y un botón.'],
+      ['Objetivo de campaña','Resultado general que se busca con la publicidad, como dar a conocer Estelí Tours o generar ventas.'],
+      ['Ubicación de conversión','Lugar donde se espera que ocurra la acción. Por ejemplo, una solicitud de cotización puede recibirse en un formulario o por WhatsApp.'],
+      ['Objetivo de rendimiento','Resultado específico que Meta prioriza al mostrar los anuncios. En una campaña de tráfico, puede priorizar los clics o las visitas a la página de destino.'],
+      ['Maximizar','Orientar la distribución de los anuncios para conseguir la mayor cantidad de resultados o el mayor valor posible, según la configuración y el presupuesto.'],
+      ['Llamada a la acción (CTA)','Texto o botón que indica el siguiente paso al público. Algunos ejemplos son «Más información» y «Reservar».'],
+      ['Vista previa','Representación de cómo se verá el anuncio antes de publicarlo. Permite revisar el texto, la imagen y el botón.'],
+      ['Métrica','Indicador numérico que permite evaluar el desempeño de un anuncio, como el alcance, los clics o las compras.']
     ]],
-    ['Los seis objetivos',[
-      ['Reconocimiento','Querés que más personas vean el anuncio y conozcan tu negocio.'],
-      ['Tráfico','Querés que la gente vaya a un lugar, como la página con el itinerario de Miraflor.'],
-      ['Interacción','Querés que la gente reaccione, comente o empiece una conversación, según cómo lo configurés.'],
-      ['Clientes potenciales','Querés recibir solicitudes de personas interesadas para responderles y darles seguimiento.'],
-      ['Promoción de la app','Querés que la gente instale una aplicación o haga una acción dentro de ella.'],
-      ['Ventas','Querés conseguir compras, como una reserva pagada, y poder contarlas.']
+    ['Los seis objetivos publicitarios',[
+      ['Reconocimiento','Busca que más personas conozcan un negocio o servicio. Estelí Tours podría elegir este objetivo para dar a conocer sus excursiones a un público nuevo.'],
+      ['Tráfico','Dirige a las personas a un destino, como la página web con el itinerario de una excursión a Miraflor.'],
+      ['Interacción','Busca generar respuestas al anuncio, como reacciones, comentarios, reproducciones de video o conversaciones por WhatsApp, según la configuración.'],
+      ['Clientes potenciales','Permite captar solicitudes de personas interesadas y darles seguimiento. Por ejemplo, recibir formularios de grupos que solicitan una cotización.'],
+      ['Promoción de la app','Busca generar instalaciones de una aplicación o acciones dentro de ella, como completar un registro en una aplicación de reservas.'],
+      ['Ventas','Busca generar compras o aumentar el valor de las ventas, según la configuración. Por ejemplo, conseguir reservas pagadas en el sitio web.']
     ]],
-    ['Vistas, clics y mensajes',[
-      ['Alcance','Es el cálculo de cuántas personas distintas vieron el anuncio.'],
-      ['Impresiones','Son las veces que se mostró el anuncio. Si a una persona se le muestra tres veces, son tres impresiones.'],
-      ['Clics en el enlace','Veces que alguien tocó el enlace del anuncio.'],
-      ['Visitas a la página de destino','Veces que la página se cargó después de tocar el enlace.'],
-      ['Página de destino','Es la página que se abre cuando tocás el enlace. Puede ser la del itinerario, por ejemplo.'],
-      ['Interacciones con la publicación','Son acciones como reaccionar, comentar o compartir.'],
-      ['Apps de mensajes','Son aplicaciones para conversar. Por ejemplo, en WhatsApp alguien puede preguntar si hay cupos para un tour.'],
-      ['Conversaciones iniciadas','Es la cuenta de chats que la gente empezó desde el anuncio.']
+    ['Alcance, tráfico e interacciones',[
+      ['Alcance','Cantidad estimada de personas distintas que vieron el anuncio al menos una vez.'],
+      ['Impresiones','Cantidad de veces que se mostró el anuncio. Si una persona lo ve tres veces, se registran tres impresiones.'],
+      ['Clics en el enlace','Número de veces que las personas seleccionan un enlace del anuncio. El clic se contabiliza aunque la página no llegue a cargar.'],
+      ['Visitas a la página de destino','Número de veces que la página de destino carga después de que alguien selecciona el enlace del anuncio.'],
+      ['Página de destino','Página que abre el enlace del anuncio. Por ejemplo, la página que detalla el itinerario y las condiciones de una excursión.'],
+      ['Interacciones con la publicación','Acciones que las personas realizan en una publicación, como reaccionar, comentar o compartir.'],
+      ['Apps de mensajes','Aplicaciones de mensajería que pueden recibir consultas desde un anuncio. Por ejemplo, WhatsApp para consultar la disponibilidad de un recorrido.'],
+      ['Conversaciones iniciadas','Número de conversaciones que comienzan a través del anuncio y quedan registradas según las reglas de medición de Meta.']
     ]],
     ['Consultas y compras',[
-      ['Formulario instantáneo','Es una ficha que la persona llena dentro de la plataforma para pedir información.'],
-      ['Cliente potencial','Es alguien que mostró interés y dejó una forma de contactarlo. Por ejemplo, pidió una cotización.'],
-      ['Costo por resultado','Es lo que gastaste dividido entre los resultados logrados. Si gastaste C$100 y recibiste 5 solicitudes, cada una costó C$20.'],
-      ['Conversión','Es la acción que querías que la persona completara, como enviar un formulario o pagar una reserva.'],
-      ['Evento','Es el registro de una acción. El evento «Compra» se puede registrar cuando se confirma un pago.'],
-      ['Conjunto de datos','Es donde Meta recibe los registros de acciones de tu sitio o app, como las compras.'],
-      ['Valor de conversión','Es la suma de lo que valen las acciones registradas. Dos reservas pagadas de C$500 suman C$1,000.'],
-      ['ROAS','Compara el dinero de las ventas atribuidas al anuncio con lo que gastaste en él. Si gastaste C$100 y se atribuyeron C$300 en ventas, el ROAS es 3.'],
-      ['Atribución','Es la forma de decidir qué resultados se cuentan como relacionados con un anuncio.']
+      ['Formulario instantáneo','Formulario que se completa dentro de Facebook o Instagram. Una operadora puede usarlo para solicitar la fecha del viaje, el tamaño del grupo y un dato de contacto.'],
+      ['Cliente potencial','Persona que demuestra interés y facilita un medio de contacto. Por ejemplo, alguien que solicita una cotización para un grupo.'],
+      ['Costo por resultado','Gasto publicitario dividido entre los resultados registrados. Con C$100 de gasto y cinco solicitudes, el costo promedio es de C$20 por solicitud.'],
+      ['Conversión','Acción completada que se ha definido como resultado de interés, como enviar una solicitud o pagar una reserva.'],
+      ['Evento','Registro de una acción para su medición. Por ejemplo, el sitio web puede enviar el evento «Compra» al confirmar el pago de una reserva.'],
+      ['Conjunto de datos','Recurso de Meta que reúne registros de acciones, como las compras que comunica un sitio web. Estos datos permiten medir los resultados de una campaña.'],
+      ['Valor de conversión','Importe total de las conversiones atribuidas a la campaña. Si se atribuyen dos reservas de C$500 cada una, el valor total es de C$1,000.'],
+      ['ROAS','Retorno de la inversión publicitaria. Se calcula dividiendo los ingresos atribuidos a los anuncios entre el gasto publicitario. Con C$300 en ventas atribuidas y C$100 de gasto, el ROAS es 3. Esto equivale a C$3 en ingresos por cada C$1 invertido.'],
+      ['Atribución','Reglas que determinan cuándo un resultado se asigna a un anuncio. Por ejemplo, una reserva puede atribuirse al anuncio si se completa dentro del plazo de medición después de un clic.']
     ]],
     ['Aplicaciones',[
-      ['App registrada','Es una aplicación que el negocio ya dio de alta para usarla en sus campañas.'],
-      ['Instalación','Ocurre cuando una persona instala la aplicación en su dispositivo.'],
-      ['Evento en la app','Es una acción que la aplicación registra. Por ejemplo, la persona abrió una cuenta o hizo una reserva.']
+      ['App registrada','Aplicación que el negocio ha vinculado a Meta para promocionarla y medir las acciones configuradas.'],
+      ['Instalación','Acción de instalar una aplicación en un dispositivo. El informe publicitario muestra las instalaciones atribuidas al anuncio.'],
+      ['Evento en la app','Acción registrada dentro de una aplicación, como crear una cuenta o completar una reserva.']
     ]]
   ];
-  const dictionaryItem = {title:'Diccionario',symbol:'≡',short:'Palabras explicadas fácil'};
+  const dictionaryItem = {title:'Diccionario',symbol:'≡',short:'Terminología publicitaria'};
 
   function shell(demo, key, content) {
     const menu = Object.entries({...cases,diccionario:dictionaryItem});
@@ -152,7 +152,7 @@ const EsteliObjetivos = (() => {
 
   function renderDictionary(demo) {
     shell(demo,'diccionario',`<section class="objective-work objective-glossary" aria-label="Diccionario de anuncios">
-      <p class="objective-goal">Abrí un grupo para ver qué significa cada palabra, con ejemplos sencillos.</p>
+      <p class="objective-goal">Seleccione una categoría para consultar las definiciones y sus ejemplos aplicados a negocios turísticos.</p>
       ${dictionarySections.map(([group,terms],i)=>`<details${i===0?' open':''}>
         <summary>${group}</summary><dl>
           ${terms.map(([term,definition])=>`<div><dt>${term}</dt><dd>${definition}</dd></div>`).join('')}
