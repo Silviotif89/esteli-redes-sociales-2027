@@ -402,6 +402,22 @@
   line-height:1.12;
 }
 
+.objective-list a[href="#45/diccionario"] {margin-top:.36em}
+.objective-app .objective-glossary {grid-column:2/-1}
+.objective-glossary details {
+  border:1px solid var(--objective-line);border-radius:8px;background:var(--objective-paper);
+}
+.objective-glossary summary {
+  cursor:pointer;padding:.63em .78em;font-weight:780;color:var(--objective-ink);
+}
+.objective-glossary summary:focus-visible {outline:3px solid #9673e6;outline-offset:2px}
+.objective-glossary dl {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em .95em;
+  border-top:1px solid var(--objective-line);padding:.7em .85em;
+}
+.objective-glossary dt {font-weight:780;color:#462b68}
+.objective-glossary dd {color:#352d41}
+
 @media (max-width:1030px) {
   .objective-app .objective-body {
     grid-template-columns:minmax(166px,24%) minmax(0,1fr) minmax(194px,28%);
@@ -440,6 +456,8 @@
   .objective-app .objective-work,.objective-app .objective-preview {padding:.8em}
   .objective-app .objective-config {grid-template-columns:repeat(2,minmax(0,1fr))}
   .objective-app .objective-preview {border-inline-start:0;border-top:1px solid var(--objective-line)}
+  .objective-app .objective-glossary,.objective-list a[href="#45/diccionario"] {grid-column:1/-1}
+  .objective-glossary dl {grid-template-columns:1fr}
   .slide.art-objectives .wa-case-cta {font-size:12px}
 }
 @media (max-width:480px) {

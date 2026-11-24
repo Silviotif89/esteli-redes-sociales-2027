@@ -86,18 +86,85 @@ const EsteliObjetivos = (() => {
   const selections = new Map();
   const route = key => '#45/' + key;
 
+  const dictionarySections = [
+    ['Cómo se arma el anuncio',[
+      ['Campaña','Es el plan general. Ahí elegís qué querés lograr con tus anuncios.'],
+      ['Conjunto de anuncios','Es donde elegís a quién mostrarle el anuncio, dónde esperás que actúe y qué resultado querés priorizar.'],
+      ['Anuncio','Es lo que ve la gente: la foto o el video, el texto y el botón.'],
+      ['Objetivo de campaña','Es tu meta principal. Por ejemplo, que más personas conozcan Estelí Tours.'],
+      ['Ubicación de conversión','Es dónde querés que pase la acción: en el anuncio, en tu sitio web, en un formulario, en WhatsApp o en una app.'],
+      ['Objetivo de rendimiento','Es el resultado que le pedís a Meta que busque más. Por ejemplo, visitas a tu página.'],
+      ['Maximizar','Significa buscar la mayor cantidad posible de un resultado con el presupuesto disponible.'],
+      ['Llamada a la acción (CTA)','Es lo que invitás a hacer. El botón puede decir «Más información», «Reservar» o «Enviar mensaje».'],
+      ['Vista previa','Es una muestra de cómo se vería el anuncio antes de publicarlo.'],
+      ['Métrica','Es un número que te muestra qué pasó. Por ejemplo, cuántas personas vieron el anuncio.']
+    ]],
+    ['Los seis objetivos',[
+      ['Reconocimiento','Querés que más personas vean el anuncio y conozcan tu negocio.'],
+      ['Tráfico','Querés que la gente vaya a un lugar, como la página con el itinerario de Miraflor.'],
+      ['Interacción','Querés que la gente reaccione, comente o empiece una conversación, según cómo lo configurés.'],
+      ['Clientes potenciales','Querés recibir solicitudes de personas interesadas para responderles y darles seguimiento.'],
+      ['Promoción de la app','Querés que la gente instale una aplicación o haga una acción dentro de ella.'],
+      ['Ventas','Querés conseguir compras, como una reserva pagada, y poder contarlas.']
+    ]],
+    ['Vistas, clics y mensajes',[
+      ['Alcance','Es el cálculo de cuántas personas distintas vieron el anuncio.'],
+      ['Impresiones','Son las veces que se mostró el anuncio. Si a una persona se le muestra tres veces, son tres impresiones.'],
+      ['Clics en el enlace','Veces que alguien tocó el enlace del anuncio.'],
+      ['Visitas a la página de destino','Veces que la página se cargó después de tocar el enlace.'],
+      ['Página de destino','Es la página que se abre cuando tocás el enlace. Puede ser la del itinerario, por ejemplo.'],
+      ['Interacciones con la publicación','Son acciones como reaccionar, comentar o compartir.'],
+      ['Apps de mensajes','Son aplicaciones para conversar. Por ejemplo, en WhatsApp alguien puede preguntar si hay cupos para un tour.'],
+      ['Conversaciones iniciadas','Es la cuenta de chats que la gente empezó desde el anuncio.']
+    ]],
+    ['Consultas y compras',[
+      ['Formulario instantáneo','Es una ficha que la persona llena dentro de la plataforma para pedir información.'],
+      ['Cliente potencial','Es alguien que mostró interés y dejó una forma de contactarlo. Por ejemplo, pidió una cotización.'],
+      ['Costo por resultado','Es lo que gastaste dividido entre los resultados logrados. Si gastaste C$100 y recibiste 5 solicitudes, cada una costó C$20.'],
+      ['Conversión','Es la acción que querías que la persona completara, como enviar un formulario o pagar una reserva.'],
+      ['Evento','Es el registro de una acción. El evento «Compra» se puede registrar cuando se confirma un pago.'],
+      ['Conjunto de datos','Es donde Meta recibe los registros de acciones de tu sitio o app, como las compras.'],
+      ['Valor de conversión','Es la suma de lo que valen las acciones registradas. Dos reservas pagadas de C$500 suman C$1,000.'],
+      ['ROAS','Compara el dinero de las ventas atribuidas al anuncio con lo que gastaste en él. Si gastaste C$100 y se atribuyeron C$300 en ventas, el ROAS es 3.'],
+      ['Atribución','Es la forma de decidir qué resultados se cuentan como relacionados con un anuncio.']
+    ]],
+    ['Aplicaciones',[
+      ['App registrada','Es una aplicación que el negocio ya dio de alta para usarla en sus campañas.'],
+      ['Instalación','Ocurre cuando una persona instala la aplicación en su dispositivo.'],
+      ['Evento en la app','Es una acción que la aplicación registra. Por ejemplo, la persona abrió una cuenta o hizo una reserva.']
+    ]]
+  ];
+  const dictionaryItem = {title:'Diccionario',symbol:'≡',short:'Palabras explicadas fácil'};
+
+  function shell(demo, key, content) {
+    const menu = Object.entries({...cases,diccionario:dictionaryItem});
+    demo.innerHTML = `<section class="objective-app" data-objective="${key}" aria-label="Simulador de objetivos publicitarios">
+      <header class="objective-top"><div><strong>${key==='diccionario'?'Diccionario de anuncios':'Crear campaña'}</strong><small>Administrador de anuncios · cuenta de práctica Estelí Tours</small></div>
+      <span class="objective-progress">Campaña · Conjunto de anuncios · Anuncio</span></header>
+      <div class="objective-body">
+        <nav class="objective-list" aria-label="Objetivos de campaña y diccionario">${menu.map(([id,choice])=>
+          `<a href="${route(id)}"${id===key?' aria-current="page"':''}><span class="objective-symbol" aria-hidden="true">${choice.symbol}</span>
+          <span class="objective-choice"><strong>${choice.title}</strong><small>${choice.short}</small></span></a>`).join('')}</nav>
+        ${content}
+      </div>
+    </section>`;
+  }
+
+  function renderDictionary(demo) {
+    shell(demo,'diccionario',`<section class="objective-work objective-glossary" aria-label="Diccionario de anuncios">
+      <p class="objective-goal">Abrí un grupo para ver qué significa cada palabra, con ejemplos sencillos.</p>
+      ${dictionarySections.map(([group,terms],i)=>`<details${i===0?' open':''}>
+        <summary>${group}</summary><dl>
+          ${terms.map(([term,definition])=>`<div><dt>${term}</dt><dd>${definition}</dd></div>`).join('')}
+        </dl></details>`).join('')}
+    </section>`);
+  }
+
   function render(demo, key) {
     const item = cases[key];
     const state = selections.get(key) || {place:0, goal:0};
     selections.set(key,state);
-    demo.innerHTML = `<section class="objective-app" data-objective="${key}" aria-label="Simulador de objetivos publicitarios">
-      <header class="objective-top"><div><strong>Crear campaña</strong><small>Administrador de anuncios · cuenta de práctica Estelí Tours</small></div>
-      <span class="objective-progress">Campaña · Conjunto de anuncios · Anuncio</span></header>
-      <div class="objective-body">
-        <nav class="objective-list" aria-label="Objetivos de campaña">${Object.entries(cases).map(([id,choice])=>
-          `<a href="${route(id)}"${id===key?' aria-current="page"':''}><span class="objective-symbol" aria-hidden="true">${choice.symbol}</span>
-          <span class="objective-choice"><strong>${choice.title}</strong><small>${choice.short}</small></span></a>`).join('')}</nav>
-        <section class="objective-work" aria-label="Configuración del objetivo">
+    shell(demo,key,`<section class="objective-work" aria-label="Configuración del objetivo">
           <span class="objective-kicker">Conjunto de anuncios</span>
           <h2>${item.title}</h2><p class="objective-goal">${item.use}</p>
           <form class="objective-config">
@@ -118,9 +185,7 @@ const EsteliObjetivos = (() => {
           <button class="objective-preview-cta" type="button" aria-expanded="false" aria-controls="objective-visitor"></button>
           <p class="objective-visitor" id="objective-visitor" hidden></p>
           <div class="objective-metric" aria-live="polite"><strong>Qué medir</strong><b></b><p></p></div>
-        </aside>
-      </div>
-    </section>`;
+        </aside>`);
     const location = demo.querySelector('#objective-location');
     const performance = demo.querySelector('#objective-performance');
     const status = demo.querySelector('.objective-status');
@@ -166,5 +231,6 @@ const EsteliObjetivos = (() => {
     sync(true);
   }
   const publicCases = Object.fromEntries(Object.entries(cases).map(([key,item])=>[key,{title:item.title,render:demo=>render(demo,key)}]));
+  publicCases.diccionario = {title:dictionaryItem.title,render:renderDictionary};
   return {cases:publicCases,metaGuide};
 })();
