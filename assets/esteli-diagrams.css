@@ -1,0 +1,286 @@
+/* Teaching diagrams share scale and input affordances, with an individual layout for each lesson. */
+.slide.di-slide {
+  --di-ink:#211632;
+  --di-paper:#fff7ed;
+  --di-violet:#ad9bff;
+  --di-gold:#f9c95f;
+  --di-sky:#7cdcec;
+  --di-red:#ff877d;
+  --di-body:clamp(14px,1.57cqw,27px);
+  --di-label:clamp(16px,2.08cqw,36px);
+  --di-micro:clamp(12px,1.17cqw,20px);
+  --di-font:var(--display,system-ui);
+}
+.slide.di-slide .content {min-width:0}
+.slide.di-slide :is(ol,li) {list-style:none;margin:0;padding:0;min-width:0}
+.di-slide .di-icon {width:1.15em;height:1.15em;flex:none;vertical-align:middle}
+.slide.di-slide [data-di-step] {
+  -webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;min-width:0;color:var(--di-ink);
+  font-family:var(--di-font);cursor:pointer;text-align:left;
+  transition:background-color .22s ease,color .22s ease,transform .22s ease,border-color .22s ease;
+  filter:none;
+}
+.slide.di-slide [data-di-step]:focus-visible {outline:3px solid var(--di-ink);outline-offset:3px}
+.slide.di-slide [data-di-step] strong {font-size:var(--di-label);font-weight:800;line-height:.98;letter-spacing:-.035em}
+.slide.di-slide [data-di-step] small {
+  display:block;font-family:system-ui,sans-serif;font-size:var(--di-body);line-height:1.22;letter-spacing:-.02em;
+}
+
+/* A trail marks the stages that lead from discovery to recommendation. */
+.slide.di-slide-journey {
+  --surface:#fbe8d9;--line:#66458c48;
+}
+.di-journey {display:grid;gap:clamp(14px,1.45cqw,28px)}
+.di-trail {
+  width:100%;height:clamp(130px,18cqw,320px);display:block;background:#24173f;
+  border-radius:clamp(10px,1.1cqw,22px);overflow:hidden;
+}
+.di-trail-route {stroke:#c2aee4;stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:1 2.4}
+.di-trail-progress {
+  stroke:#ffdb89;stroke-width:5;stroke-dasharray:100;
+  stroke-dashoffset:calc(100 - var(--di-distance,0));transition:stroke-dashoffset .55s ease;
+}
+.di-point {font-size:17px;font-family:var(--di-font);font-weight:850;fill:#24173f}
+.di-point-fill {fill:var(--di-tone);stroke:#24173f;stroke-width:2}
+.di-point-halo {fill:none;stroke:var(--di-tone);stroke-width:1.5;opacity:0;transition:opacity .24s ease}
+.di-point.is-marked .di-point-halo {opacity:1}
+.di-trail-steps {display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.15cqw,23px)}
+.di-trail-steps :is(li,button) {height:100%}
+.slide.di-slide .di-trail-steps button {
+  display:grid;align-content:start;gap:.6em;width:100%;padding:clamp(7px,.73cqw,15px) 0 0;
+  background:none;border:0;border-radius:0;border-top:3px solid #805ba64d;
+}
+.slide.di-slide .di-trail-steps button[aria-pressed=true] {border-color:var(--di-ink)}
+.di-trail-icon {
+  display:grid;place-items:center;width:clamp(32px,3.1cqw,58px);aspect-ratio:1;
+  background:var(--di-tone);border-radius:50%;font-size:clamp(16px,1.6cqw,30px);
+}
+.di-trail-steps button span:last-child {display:grid;gap:.4em}
+.di-trail-steps button[aria-pressed=true] strong {text-decoration:underline;text-underline-offset:.17em}
+
+/* The highlighted line in the post shows what each letter adds to the message. */
+.slide.di-slide-aida {--surface:#eae0ff}
+.di-aida {display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.24fr);align-items:center;gap:clamp(15px,3.2cqw,64px)}
+.di-aida-sequence {display:grid;gap:clamp(4px,.48cqw,9px)}
+.slide.di-slide .di-aida-sequence button {
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.9em;width:100%;
+  padding:.22em .77em .22em .4em;border:0;border-bottom:1px solid #21163242;border-radius:0;background:transparent;
+}
+.slide.di-slide .di-aida-sequence button:is(:hover,[aria-pressed=true]) {background:var(--di-tone);border-radius:12px;border-color:transparent}
+.di-aida-sequence button b {
+  font-size:clamp(33px,5.5cqw,98px);line-height:.88;min-width:1.1em;
+  letter-spacing:-.06em;padding:.08em;
+}
+.di-aida-sequence button .di-icon {font-size:var(--di-label);opacity:0}
+.di-aida-sequence button[aria-pressed=true] .di-icon {opacity:1}
+.di-aida-message {border-radius:clamp(13px,1.55cqw,27px);color:#fff9ef;background:#211632;overflow:hidden}
+.di-aida-message > header {
+  display:flex;align-items:center;justify-content:flex-start;gap:.7em;height:auto;
+  padding:clamp(9px,1.1cqw,21px) clamp(13px,1.35cqw,26px);
+  border-bottom:1px solid #fff9ef43;font-size:var(--di-body);line-height:1.12;
+}
+.di-aida-message header small {display:block;color:#e4d6f7;font-size:var(--di-micro);margin-top:.25em}
+.di-aida-avatar {
+  display:grid;place-items:center;width:2.3em;aspect-ratio:1;border-radius:50%;
+  background:#7cdcec;color:#211632;flex:none;
+}
+.di-aida-copy {padding:clamp(10px,1.35cqw,26px);display:grid;gap:.2em}
+.di-aida-copy p {
+  font-family:var(--di-font);font-size:clamp(16px,2.18cqw,38px);font-weight:680;
+  line-height:1.13;letter-spacing:-.035em;color:#fff9ef;margin:0;
+  padding:.32em .42em;border-radius:8px;
+  transition:color .25s ease,background-color .25s ease;
+}
+.di-aida-copy p.is-current {background:var(--di-tone);color:var(--di-ink);font-weight:780}
+
+/* The middle beat heightens the problem before the offer resolves it. */
+.slide.di-slide-pas {--surface:#ffd3c3}
+.di-pas {position:relative;display:grid;isolation:isolate;padding-block:3.2cqw 1.3cqw}
+.di-pas-wave {position:absolute;inset:auto 0 1% 0;width:100%;height:13cqw;z-index:-1;color:#984f57;overflow:visible}
+.di-pas-sequence {display:grid;grid-template-columns:1fr .94fr 1.16fr;gap:clamp(10px,2.9cqw,54px);align-items:start}
+.di-pas-sequence li:first-child {padding-top:4.3cqw}
+.di-pas-sequence li:last-child {padding-top:2.8cqw}
+.slide.di-slide .di-pas-sequence button {
+  display:grid;gap:.8em;background:#fff7ed;border:2px solid transparent;border-radius:12px 12px 12px 0;
+  padding:clamp(11px,1.4cqw,26px);min-width:0;width:100%;
+}
+.slide.di-slide .di-pas-sequence button[aria-pressed=true] {border-color:#2c1c3a;box-shadow:5px 5px 0 #2c1c3a;transform:translateY(-3px)}
+.di-pas-label {display:flex;min-width:0;align-items:center;gap:.45em}
+.di-pas-label b {background:var(--di-tone);padding:.32em .42em;border-radius:50%;font-size:var(--di-label);line-height:.88}
+.di-pas-label .di-icon {font-size:var(--di-label);margin-left:auto;opacity:.64}
+.di-pas-message {
+  font-family:var(--di-font);font-size:clamp(18px,2.37cqw,39px);line-height:1.12;
+  letter-spacing:-.035em;font-weight:730;overflow-wrap:anywhere;
+}
+
+/* Seven days stay visible while the selected day's idea changes. */
+.slide.di-slide-calendar {--surface:#e8f6f8}
+.di-calendar {display:grid;gap:clamp(8px,1.2cqw,21px)}
+.slide.di-slide-calendar .calendar {
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;
+  margin:0;padding:0;border:0;border-top:2px solid #211632;border-bottom:2px solid #211632;background:transparent;
+}
+.slide.di-slide .di-day {
+  display:flex;flex-direction:column;align-items:flex-start;gap:clamp(4px,.65cqw,12px);
+  min-height:clamp(110px,14.2cqw,235px);padding:clamp(7px,.92cqw,17px);min-width:0;
+  border:0;border-left:1px solid #21163244;border-radius:0;background:transparent;
+}
+.slide.di-slide .di-day:first-child {border-left:0}
+.slide.di-slide .di-day[aria-pressed=true] {background:var(--di-tone)}
+.slide.di-slide .di-day > span {font-size:var(--di-micro);font-weight:850;text-transform:uppercase;letter-spacing:.1em}
+.slide.di-slide .di-day strong {font-size:clamp(14px,1.67cqw,27px);line-height:1.02}
+.slide.di-slide .di-day small {font-size:clamp(12px,1.30cqw,21px);line-height:1.22;overflow-wrap:anywhere}
+.di-day .di-icon {font-size:clamp(19px,2.9cqw,45px)}
+.di-day-detail {display:grid;grid-template-columns:auto 1fr;gap:clamp(9px,1.1cqw,20px);align-items:center}
+.di-day-icon {
+  display:grid;place-items:center;background:var(--di-active,var(--di-sky));width:clamp(42px,5.2cqw,90px);
+  aspect-ratio:1;border-radius:50%;font-size:clamp(21px,2.4cqw,42px);color:var(--di-ink);
+  transition:background-color .22s ease;
+}
+.di-day-detail b {display:block;font-family:var(--di-font);font-size:var(--di-label);color:var(--di-ink);letter-spacing:-.04em}
+.di-day-detail p {margin:.1em 0 0;font-size:var(--di-body);line-height:1.22;color:var(--di-ink)}
+.slide.di-slide-calendar .content .foot {margin-top:.9cqw}
+
+/* An editorial workbench names the inputs needed at each publishing step. */
+.slide.di-slide-workflow {--surface:#c8e8fa}
+.di-workflow {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(12px,2.3cqw,42px);align-items:stretch;
+}
+.di-workflow-sequence,.di-service-sequence {display:grid;gap:.4cqw}
+.slide.di-slide .di-workflow-sequence button,.slide.di-slide .di-service-sequence button {
+  display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:.7em;
+  width:100%;padding:clamp(8px,.75cqw,15px);border:0;border-bottom:1px solid #21163257;border-radius:0;background:none;
+}
+.slide.di-slide .di-workflow-sequence button[aria-pressed=true],.slide.di-slide .di-service-sequence button[aria-pressed=true] {
+  background:var(--di-tone);border-radius:7px;border-color:transparent;
+}
+.di-workflow-sequence button b,.di-service-sequence button b {
+  display:grid;place-items:center;width:1.9em;aspect-ratio:1;background:#211632;color:#fff7ed;
+  border-radius:50%;font-size:clamp(13px,1.31cqw,24px);
+}
+.di-workflow-sequence button span,.di-service-sequence button span {display:grid;gap:.24em}
+.di-workbench {
+  display:flex;flex-direction:column;justify-content:flex-end;position:relative;isolation:isolate;overflow:hidden;
+  border-radius:clamp(9px,1.5cqw,26px);padding:clamp(15px,2.1cqw,40px);
+  background:#261950;color:#fff7ed;
+}
+.di-workbench-count {display:block;color:var(--di-active);font-size:var(--di-micro);font-weight:780;letter-spacing:.13em;text-transform:uppercase}
+.di-workbench strong {
+  display:block;margin:.23em 0 .15em;max-width:10ch;
+  font-family:var(--di-font);font-size:clamp(25px,4.1cqw,76px);line-height:.96;letter-spacing:-.06em;
+}
+.di-workbench p {font-size:var(--di-body);margin:0;color:#eee5f7}
+.di-workbench-icon {
+  position:absolute;top:-6%;right:-4%;z-index:-1;color:#fff7ed;opacity:.13;
+  font-size:clamp(100px,16cqw,300px);
+}
+
+/* The selected booking detail changes a concrete reply in the sample conversation. */
+.slide.di-slide-service {--surface:#fce4d4}
+.di-service {display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);gap:clamp(14px,3.2cqw,58px);align-items:center}
+.di-service-talk {
+  position:relative;min-height:clamp(130px,20cqw,330px);
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:clamp(14px,2.25cqw,42px);border-radius:12px 12px 12px 2px;
+  color:#211632;background:var(--di-active);transition:background-color .2s ease;
+}
+.di-service-talk::after {
+  content:"";position:absolute;left:0;top:100%;width:clamp(12px,2cqw,38px);height:clamp(12px,2cqw,38px);
+  background:inherit;clip-path:polygon(0 0,100% 0,0 100%);
+}
+.di-service-talk span {display:flex;align-items:center;gap:.45em;font-size:var(--di-micro);font-weight:750}
+.di-service-talk p {
+  font-family:var(--di-font);max-width:23ch;
+  font-size:clamp(19px,2.85cqw,51px);font-weight:740;line-height:1.08;letter-spacing:-.044em;
+  margin:.45em 0 0;
+}
+
+/* Nested frames make the scope of each level visible. */
+.slide.di-slide-hierarchy {--surface:#ecdfff}
+.di-hierarchy {display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:clamp(14px,3.2cqw,60px)}
+.di-stack {width:100%;height:min(27.2cqw,480px);display:block}
+.di-stack .di-layer {color:#241733}
+.di-stack .di-layer rect {fill:var(--di-tone);stroke:#2a1b3a;stroke-width:1.6;transition:stroke-width .2s}
+.di-stack .di-layer.is-current rect {stroke-width:4.4}
+.di-stack .di-layer text {font-family:var(--di-font);font-size:22px;font-weight:850;fill:#241733}
+.di-hierarchy-steps {display:grid;gap:clamp(5px,.6cqw,12px)}
+.slide.di-slide .di-hierarchy-steps button {
+  width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;
+  gap:clamp(7px,.9cqw,16px);padding:clamp(7px,.92cqw,18px);background:transparent;
+  border:0;border-bottom:1px solid #2116324d;border-radius:0;
+}
+.slide.di-slide .di-hierarchy-steps button[aria-pressed=true] {background:var(--di-tone);border-radius:12px;border-color:transparent}
+.di-hierarchy-steps button b {
+  color:#fff7ed;background:#211632;font-size:clamp(17px,2.05cqw,37px);width:1.4em;
+  border-radius:50%;aspect-ratio:1;display:grid;place-items:center;
+}
+.di-hierarchy-steps button span {display:grid;gap:.4em}
+.di-hierarchy-steps button .di-icon {font-size:var(--di-label);opacity:0}
+.di-hierarchy-steps button[aria-pressed=true] .di-icon {opacity:1}
+
+/* A rising line connects the four weeks in the participant's sprint. */
+.slide.di-slide-roadmap {
+  --surface:#271947;--ink:#fff7ed;--muted:#e8d9f4;--line:#fff7ed47;
+}
+.slide.di-slide-roadmap :is(h1,.subtitle,.foot) {color:var(--ink)}
+.di-roadmap {min-width:0;position:relative;isolation:isolate}
+.di-road-line {width:100%;height:11cqw;position:absolute;inset:0 0 auto;z-index:-1}
+.di-road-track {fill:none;stroke:#bda9dc;stroke-width:3;stroke-dasharray:1 2.7;stroke-linecap:round}
+.di-road-progress {stroke:#f9c95f;stroke-width:4;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--di-distance,25));transition:stroke-dashoffset .6s ease}
+.di-road-stages {display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2.15cqw,38px)}
+.di-slide .di-road-stages li {padding-top:calc((4 - var(--di-order,1)) * 2.5cqw)}
+.di-road-stages li:nth-child(2) {--di-order:2}
+.di-road-stages li:nth-child(3) {--di-order:3}
+.di-road-stages li:nth-child(4) {--di-order:4}
+.slide.di-slide .di-road-stages button {
+  background:none;border:0;padding:0;color:#fff7ed;border-radius:0;
+  display:flex;flex-direction:column;align-items:flex-start;gap:clamp(6px,.67cqw,13px);width:100%;
+}
+.slide.di-slide .di-road-stages button:focus-visible {outline-color:#fff7ed}
+.di-road-icon {
+  display:grid;place-items:center;background:var(--di-tone);color:#211632;width:clamp(38px,4.25cqw,75px);aspect-ratio:1;
+  border-radius:44%;font-size:clamp(20px,2.35cqw,41px);box-shadow:0 0 0 5px #271947;
+}
+.di-road-stages button[aria-pressed=true] .di-road-icon {box-shadow:0 0 0 4px #271947,0 0 0 6px var(--di-tone)}
+.di-road-week {font-size:var(--di-micro);font-weight:800;color:var(--di-tone);letter-spacing:.12em;text-transform:uppercase}
+.di-road-stages button strong {color:#fff7ed}
+.di-road-stages button small {color:#eee5f7}
+
+@media (max-width:700px), (orientation:portrait) and (max-width:950px) {
+  .slide.di-slide {--di-label:clamp(16px,5cqw,24px);--di-body:clamp(14px,4.2cqw,21px);--di-micro:clamp(11px,3.5cqw,17px)}
+  .slide.di-slide .content {flex:none;justify-content:flex-start}
+  .di-trail {height:clamp(90px,23cqw,190px)}
+  .di-trail-steps {grid-template-columns:1fr;gap:6px}
+  .slide.di-slide .di-trail-steps button {grid-template-columns:auto 1fr;align-items:center;padding:6px 0}
+  .di-trail-steps button span:last-child {gap:.2em}
+  .di-aida {grid-template-columns:1fr;gap:12px}
+  .di-aida-sequence {grid-template-columns:1fr 1fr}
+  .slide.di-slide .di-aida-sequence button {gap:.23em;grid-template-columns:auto 1fr;padding-right:.2em}
+  .di-aida-sequence button .di-icon {display:none}
+  .di-aida-message > header {font-size:14px}
+  .di-pas-sequence {grid-template-columns:1fr;gap:12px}
+  .di-pas-sequence li:first-child,.di-pas-sequence li:last-child {padding-top:0}
+  .di-pas-wave {display:none}
+  .slide.di-slide-calendar .calendar {grid-template-columns:repeat(4,minmax(0,1fr));row-gap:1px}
+  .slide.di-slide .di-day:nth-child(5) {border-left:0}
+  .slide.di-slide .di-day:nth-child(n+5) {border-top:1px solid #21163244}
+  .slide.di-slide .di-day {min-height:95px;padding:5px}
+  .slide.di-slide .di-day strong {font-size:clamp(12px,3.5vw,14px);overflow-wrap:anywhere}
+  .slide.di-slide .di-day small {display:none}
+  .di-day-detail {padding:8px 0}
+  .di-workflow,.di-service {grid-template-columns:1fr;gap:13px}
+  .di-workbench,.di-service-talk {min-height:120px}
+  .di-service-talk {margin-bottom:10px}
+  .di-hierarchy {grid-template-columns:1fr;gap:5px}
+  .di-stack {height:clamp(110px,48cqw,250px)}
+  .di-road-stages {grid-template-columns:1fr 1fr;gap:15px}
+  .di-slide .di-road-stages li {padding-top:0}
+  .di-road-line {display:none}
+}
+@media (max-width:480px) {
+  .slide.di-slide {min-height:calc(100dvh - 205px)}
+}
+@media (prefers-reduced-motion:reduce) {
+  .di-slide *, .di-slide *::before, .di-slide *::after {transition:none!important}
+}
