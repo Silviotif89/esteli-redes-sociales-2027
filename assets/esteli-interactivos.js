@@ -7,6 +7,12 @@ const EsteliInteractivos = (() => {
       portrait: true,
       invite: 'Elegí una red para ver un ejemplo de Estelí Tours.'
     },
+    13: {
+      cases: EsteliPerfiles.cases,
+      label: 'Perfiles de negocio',
+      portrait: true,
+      invite: 'Abrí los dos y fijate qué información encuentra el visitante.'
+    },
     39: {
       cases: EsteliWhatsApp.cases,
       label: 'WhatsApp Business',

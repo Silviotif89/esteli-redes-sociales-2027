@@ -1,0 +1,98 @@
+.hook-bank {
+  --hook-ink:#231838;
+  --hook-card:#fffaf2;
+  --hook-highlight:#e5d8fa;
+  display:grid;
+  gap:clamp(8px,1.15cqw,20px);
+  min-width:0;
+}
+.hook-filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(5px,.6cqw,10px);
+}
+.hook-filter {
+  min-height:36px;
+  padding:.42em .82em;
+  border:1px solid #c7b7e4;
+  border-radius:999px;
+  background:#f7efff;
+  color:var(--hook-ink);
+  font:inherit;
+  font-size:clamp(13px,1.39cqw,25px);
+  font-weight:725;
+  line-height:1.15;
+}
+.hook-filter:hover {background:#eadcff}
+.hook-filter[aria-pressed="true"] {background:#ffca89;border-color:#ffca89;color:#332140}
+.hook-filter:focus-visible {outline:3px solid #ffca89;outline-offset:3px}
+.hook-status {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
+.hook-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(7px,1cqw,18px);
+}
+.hook-card {
+  min-width:0;
+  padding:clamp(11px,1.35cqw,25px);
+  border:1px solid #efe4dc;
+  border-radius:13px;
+  background:var(--hook-card);
+  color:var(--hook-ink);
+}
+.hook-card:nth-child(2) {background:#f8f1ff;border-color:#e7dbfb}
+.hook-card:nth-child(3) {background:#f1fbf7;border-color:#dcebe3}
+.hook-card:nth-child(4) {background:#fff4e6;border-color:#f7e0c9}
+.hook-type {
+  display:inline-block;
+  padding:.24em .52em;
+  border-radius:5px;
+  background:var(--hook-highlight);
+  color:#3d2662;
+  font-size:clamp(11px,1.07cqw,18px);
+  font-weight:775;
+  line-height:1.2;
+}
+.hook-line {
+  margin:.41em 0 .29em;
+  color:inherit;
+  font-family:var(--display);
+  font-size:clamp(17px,2.16cqw,37px);
+  font-weight:730;
+  line-height:1.14;
+  letter-spacing:-.012em;
+  overflow-wrap:anywhere;
+}
+.hook-shot {
+  margin:0;
+  color:#493c58;
+  font-size:clamp(13px,1.32cqw,23px);
+  line-height:1.32;
+}
+.hook-sources {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:.25em 1em;
+  color:inherit;
+  font-size:clamp(12px,1.12cqw,19px);
+  line-height:1.3;
+}
+.hook-sources a {color:inherit;text-decoration:underline;text-underline-offset:.19em}
+.hook-sources a:focus-visible {outline:3px solid #ffca89;outline-offset:2px}
+@media (max-width:700px), (orientation:portrait) and (max-width:950px) {
+  .hook-bank {gap:10px}
+  .hook-grid {grid-template-columns:minmax(0,1fr)}
+  .hook-filter {min-height:38px}
+  .hook-card {padding:12px;border-radius:10px}
+  .hook-line {font-size:19px}
+  .hook-sources {row-gap:.42em}
+}

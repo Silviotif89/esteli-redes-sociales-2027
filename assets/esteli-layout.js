@@ -2,11 +2,11 @@
 const EsteliLayout = (() => {
   const layouts = [
     'opening','outcomes','questions','business','route','chapter','number','field-notes','briefing','journey',
-    'channels','trust','profile-test','chapter','contrast','senses','matrix','idea-lab','acronym','acronym',
-    'quotes','publish-lab','prompt-lab','challenge','chapter','recipe','viewfinder','inventory','formats','storyboard',
-    'remix','toolkit','search','signals','planner','journey','challenge','chapter','reception','conversation',
+    'channels','trust','profile-compare','chapter','contrast','senses','matrix','idea-lab','acronym','acronym',
+    'quotes','publish-lab','prompt-lab','hook-library','chapter','recipe','viewfinder','inventory','formats','storyboard',
+    'remix','toolkit','search','signals','planner','journey','shot-demo','chapter','reception','conversation',
     'journey','chapter','contrast','toolkit','briefing','hierarchy','inventory','signals','ads-lab','ad-pair',
-    'chapter','metrics','dashboard','challenge','checks','journey','reading','closing'
+    'chapter','metrics','dashboard','publication-demo','checks','journey','reading','closing'
   ];
   const chapters = [
     ['Miraflor', 'miraflor','Estelí · Miraflor'],
@@ -94,26 +94,6 @@ const EsteliLayout = (() => {
         controls.append(button);
       });
       phone.prepend(controls);
-    }
-    if (layout==='profile-test') {
-      const choices=content.querySelector('.choices');
-      const names=['Perfil A','Perfil B'];
-      choices.querySelectorAll('button').forEach((b,i)=>{
-        const description=b.textContent.replace(/^[AB] · /,'');
-        b.replaceChildren();
-        const label=document.createElement('strong');
-        label.textContent=names[i];
-        const detail=document.createElement('span');
-        detail.textContent=description;
-        const avatar=document.createElement('span');
-        avatar.className='profile-avatar';
-        avatar.setAttribute('aria-hidden','true');
-        avatar.textContent=i===1?'E':'';
-        b.append(avatar,label,detail);
-        b.addEventListener('click',()=>choices.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed',String(item===b))));
-        b.setAttribute('aria-pressed','false');
-        if (i===1) b.insertAdjacentHTML('beforeend','<span class="profile-action" aria-hidden="true">Consultar por WhatsApp</span>');
-      });
     }
     if (layout==='conversation') {
       content.insertAdjacentHTML('afterbegin','<div class="chat-heading"><span class="mock-avatar" aria-hidden="true">V</span><div><strong>Visitante</strong><small>Conversación de práctica</small></div></div>');

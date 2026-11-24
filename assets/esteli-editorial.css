@@ -55,7 +55,7 @@ footer #count {min-width:66px;color:#d2dece}
 }
 .slide::before {content:none}
 .slide .kicker[hidden] {display:none}
-.slide h1, .slide h2, .slide h3, .stat, .timer, .sectionnum {font-family:var(--display)}
+.slide h1, .slide h2, .slide h3, .stat, .sectionnum {font-family:var(--display)}
 .slide h1 {
   font-size:clamp(28px,5.05cqw,102px);line-height:.99;letter-spacing:-.052em;
   font-weight:760;margin:0 0 1.25cqw;color:var(--ink);text-wrap:balance;
@@ -200,13 +200,6 @@ footer #count {min-width:66px;color:#d2dece}
 .layout-trust .tile:first-child,.layout-signals .tile:first-child {border-top:4px solid var(--orange)}
 .layout-recipe {--surface:#e6edda}
 .layout-recipe .tile {border-top:3px solid var(--forest)}
-.layout-profile-test {--surface:#e5ece4}
-.layout-profile-test .choices {grid-template-columns:1fr 1fr;gap:2cqw}
-.layout-profile-test .choices button {display:grid;align-content:start;gap:.8cqw;padding:1.7cqw;background:#fffdf7;color:var(--ink);border:1px solid var(--line)}
-.layout-profile-test .choices strong {font-family:var(--display);font-size:calc(3.05 * var(--u))}
-.profile-avatar {width:3.1em;height:3.1em;border-radius:50%;background:#ced6c7;color:#18372c;display:grid;place-content:center;font-weight:800}
-.profile-avatar:empty {background:#e9e5d9}
-.layout-profile-test .profile-action {background:var(--forest);color:white;padding:.5em .7em;width:fit-content;border-radius:4px}
 .layout-contrast .cards,.layout-search .cards,.layout-ad-pair .cards {gap:0;border:1px solid var(--line)}
 .layout-contrast .tile,.layout-search .tile,.layout-ad-pair .tile {padding:2.25cqw}
 .layout-contrast .tile:first-child,.layout-search .tile:first-child,.layout-ad-pair .tile:first-child {background:#ead8c7}
@@ -224,13 +217,10 @@ footer #count {min-width:66px;color:#d2dece}
 .layout-idea-lab {--surface:#f1d68d}
 .layout-idea-lab .center {border:1px solid #8e723e;padding:3cqw}
 .layout-idea-lab .idea {font-family:var(--display);font-size:calc(5.15 * var(--u))}
-.layout-idea-lab #spin,.layout-challenge .timerbuttons button {min-height:42px}
+.layout-idea-lab #spin {min-height:42px}
 .layout-prompt-lab {--surface:#e1e9d8}
 .layout-prompt-lab .panel {border-left:5px solid var(--forest);padding:2.2cqw;max-width:88%}
 .layout-prompt-lab #promptText {font-size:calc(1.8 * var(--u));margin:0 0 1.3cqw}
-.layout-challenge {--surface:#ead6a4}
-.layout-challenge .center {display:grid;justify-items:center;grid-template-rows:auto auto auto}
-.layout-challenge .timer {font-size:19cqw;line-height:.83;letter-spacing:-.075em}
 .slide[data-slide-number="37"] {--surface:#dbe6c8}
 .slide[data-slide-number="54"] {--surface:#e9dcc7}
 .layout-viewfinder .photoBox {aspect-ratio:16/10;background:#254739;border-radius:2px}

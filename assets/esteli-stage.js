@@ -3,17 +3,17 @@ const EsteliStage = (() => {
   const treatments = [
     'cover','manifest','participate','businesses','itinerary','chapter','statistic','postcards','dispatch','journey',
     'airwaves','trust','profile','chapter','contrast','senses','quadrants','wheel','aida','pas',
-    'headlines','studio','script','challenge','chapter','sequence','viewfinder','shootlist','ratios','reel',
-    'remix','toolkit','search','signals','week','workflow','challenge','chapter','reception','chat',
+    'headlines','studio','script','hooks','chapter','sequence','viewfinder','shootlist','ratios','reel',
+    'remix','toolkit','search','signals','week','workflow','shots','chapter','reception','chat',
     'service','chapter','choice','control-room','objectives','structure','radar','automation','ads','split-ad',
-    'chapter','scorecard','analytics','challenge','checklist','action','library','finale'
+    'chapter','scorecard','analytics','publication','checklist','action','library','finale'
   ];
   const colors = [
     'ink','shell','lilac','yellow','paper','iris','yellow','shell','sky','paper','mint','shell',
-    'sky','berry','paper','peach','lilac','yellow','lilac','peach','iris','shell','lavender','iris',
+    'sky','berry','paper','peach','lilac','yellow','lilac','peach','iris','shell','lavender','paper',
     'night','shell','ink','mint','lilac','ink','peach','shell','sky','yellow','shell','mint',
-    'berry','lagoon','mint','shell','lilac','berry','paper','sky','yellow','shell','lilac','mint',
-    'shell','peach','iris','sky','shell','night','yellow','lilac','paper','ink'
+    'shell','lagoon','mint','shell','lilac','berry','paper','sky','yellow','shell','lilac','mint',
+    'shell','peach','iris','sky','shell','peach','yellow','lilac','paper','ink'
   ];
   const authors = {
     'esteli-ciudad':['Estelí desde El Tisey','Esteli_Nicaragua_Skyline_from_Tisey.jpg','Tisey'],
@@ -66,7 +66,7 @@ const EsteliStage = (() => {
     'scorecard':['eye','heart','chat','check']
   };
   const largeArt = {
-    'businesses':'pin','script':'layers','challenge':'bolt','checklist':'check'
+    'businesses':'pin','script':'layers','checklist':'check'
   };
   function dress(el, slide, index) {
     const treatment = treatments[index];
@@ -84,7 +84,6 @@ const EsteliStage = (() => {
       heading.className = 'stage-heading';
       h1.before(heading);
       heading.append(h1,subtitle);
-      if (treatment==='studio') subtitle.textContent='Elegí tu negocio, creá una pieza y descargala en el formato que vas a publicar.';
     }
     if (itemIcons[treatment]) {
       content.querySelectorAll('.tile').forEach((tile,i)=>{
@@ -107,7 +106,6 @@ const EsteliStage = (() => {
     }
     if (treatment==='viewfinder') content.querySelector('.photoBox').insertAdjacentHTML('beforeend',`<div class="focus-corners" aria-hidden="true">${icon('frame')}</div>`);
     if (treatment==='wheel') buildWheel(content);
-    if (treatment==='profile') decorateProfile(content);
     if (treatment==='participate') {
       const qr=content.querySelector('.questionQrCard');
       qr.insertAdjacentHTML('beforebegin',`<div class="scan-arrow" aria-hidden="true">${icon('arrow')}</div>`);
@@ -130,13 +128,6 @@ const EsteliStage = (() => {
       </svg>
       ${visual}<div class="scene-glyph">${icon(mark)}</div></div>`);
     if (!isCover && !isFinal) el.querySelector('.sectionnum').setAttribute('aria-label','Estación ' + (index+1) + ' de 6');
-  }
-  function decorateProfile(content) {
-    const avatars = content.querySelectorAll('.profile-avatar');
-    avatars.forEach((avatar,i)=>{
-      avatar.textContent='';
-      avatar.innerHTML=icon(i ? 'pin' : 'frame');
-    });
   }
   function buildWheel(content) {
     const sectors = ['EDUCAR','INSPIRAR','ENTRETENER','VENDER','CONFIANZA'];

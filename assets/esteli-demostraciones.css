@@ -1,0 +1,46 @@
+.slide.art-profile .cards {gap:1.3cqw}
+.slide.art-profile .wa-case-link {
+  display:block;padding:1.45cqw 1.7cqw;border:1px solid #55497c51;
+  border-radius:1cqw;background:#effcff;color:var(--ink);text-decoration:none;
+}
+.slide.art-profile .wa-case-link:nth-child(2) {background:#fff9ef}
+.slide.art-profile .wa-case-link:is(:hover,:focus-visible) {background:#fff0c6}
+.slide.art-profile .wa-case-link .num {
+  display:grid;place-items:center;width:2.4em;aspect-ratio:1;border-radius:50%;
+  background:#e6dbff;color:#4f317b;font-size:calc(1.48 * var(--u));
+}
+.slide.art-profile .wa-case-link .wa-case-cta {margin-left:0}
+.social-view[data-example-slide="13"] {--social-accent:#5c408f;--social-paper:#edf1fc}
+.virtual-demo {
+  display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);
+  gap:2.1cqw;align-items:center;
+}
+.virtual-image {margin:0;position:relative;overflow:hidden;border-radius:1.15cqw;background:#24372f}
+.virtual-image img {width:100%;height:clamp(158px,19.3cqw,349px);object-fit:cover;display:block}
+.virtual-image img[data-shot="2"] {object-position:50% 70%}
+.virtual-image a {
+  position:absolute;right:0;bottom:0;padding:.3em .6em;background:#211830e8;color:white;
+  font-size:clamp(10px,1cqw,16px);
+}
+.virtual-copy {min-width:0;color:#2a2038}
+.virtual-copy h2 {font-size:clamp(22px,3.15cqw,56px);line-height:1.04;margin:.36em 0 .23em;letter-spacing:-.015em}
+.virtual-copy p {font-size:clamp(14px,1.62cqw,26px);line-height:1.35;margin:.4em 0}
+.virtual-tabs {display:flex;flex-wrap:wrap;gap:.4em}
+.virtual-tabs button {
+  border-radius:999px;padding:.42em .75em;background:#fffbf5;color:#332251;
+  border:1px solid #6f508f70;font-size:clamp(13px,1.2cqw,20px);min-height:34px;
+}
+.virtual-tabs button[aria-pressed=true] {background:#462b69;color:white}
+.virtual-format {display:flex;align-items:center;flex-wrap:wrap;gap:.4em;font-weight:750;font-size:clamp(13px,1.3cqw,22px)}
+.virtual-format span {background:#f6e4cb;padding:.22em .55em;border-radius:99px;font-size:.83em}
+.virtual-post-action {
+  margin:.7em 0 0;padding:.55em .72em;border-radius:7px;background:#342057;color:#fff;
+  font-size:clamp(13px,1.33cqw,22px);font-weight:740;
+}
+.virtual-copy .virtual-metric {font-size:clamp(12px,1.23cqw,20px);margin-top:.7em}
+@media (max-width:700px), (orientation:portrait) and (max-width:950px) {
+  .virtual-demo {grid-template-columns:1fr;gap:10px}
+  .virtual-copy h2 {margin:.25em 0}
+  .virtual-image img {height:145px}
+  .slide.art-profile .wa-case-link {padding:10px;border-radius:8px}
+}
