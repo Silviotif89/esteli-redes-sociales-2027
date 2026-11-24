@@ -138,15 +138,21 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
 .art-manifest .tile:nth-child(3) .stage-item-icon,.art-radar .tile:nth-child(3) .stage-item-icon {background:var(--yellow)}
 
 .art-participate .content {justify-content:center}
-.art-participate .questionQrSlide {position:relative;gap:0;grid-template-columns:1.08fr .92fr}
+.art-participate .questionQrSlide {position:relative;gap:3cqw;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)}
 .art-participate .questionQrSlide > div:first-child {font-size:calc(2 * var(--u))}
 .art-participate .questionQrSlide > div:first-child ol {font-size:calc(1.91 * var(--u))}
 .art-participate .questionQrCard {
-  justify-self:center;z-index:1;background:#fff;border:0;border-radius:1.3cqw;
-  box-shadow:1.05cqw 1.05cqw 0 #6e459e;padding:1.3cqw;
+  justify-self:center;z-index:1;width:min(100%,36cqw,460px);background:#fff;border:0;border-radius:1.3cqw;
+  box-shadow:1.05cqw 1.05cqw 0 #6e459e;padding:.8cqw;
 }
-.art-participate .scan-arrow {position:absolute;right:34%;bottom:13%;width:9cqw;color:#5a337d;transform:rotate(39deg)}
-.art-participate #questionQr {width:clamp(154px,19cqw,350px)}
+.art-participate .scan-arrow {position:absolute;right:42%;bottom:13%;width:9cqw;color:#5a337d;transform:rotate(39deg)}
+.art-participate #questionQr {width:100%;min-height:0}
+.art-participate #questionQr canvas {display:block;max-width:none}
+.art-participate #questionUrl {max-width:none;margin:.25rem 0 .5rem;font-size:clamp(11px,1.1cqw,16px)}
+.art-participate .questionQrReturn {
+  min-height:44px;padding:.65em 1em;border-radius:999px;
+  font-size:clamp(14px,1.55cqw,21px);
+}
 
 .art-businesses .choices {grid-template-columns:1fr!important;gap:.55cqw}
 .art-businesses .choices button {background:#fff8e6;color:#291830;border:0;padding:.64cqw 1.6cqw;font-size:calc(1.8 * var(--u));border-radius:40px}
@@ -274,6 +280,9 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
 .art-library .sourceList a:nth-child(2n) {background:#ffe5dc}
 .art-library .small {margin-top:.7cqw}
 
+@media (min-width:701px) and (max-height:540px) {
+  .slide.art-participate {padding-block:12px}
+}
 @media (max-width:700px), (orientation:portrait) and (max-width:950px) {
   .slide {padding:21px 17px;border-radius:7px}
   footer {z-index:20}
@@ -297,9 +306,10 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
   .art-chapter:not(:has(.chapter-photo)) .scene-glyph {top:10%}
   .art-cover .scene-glyph,.art-finale .scene-glyph {right:6%;top:3%;width:17%}
   .stage-photo figcaption,.chapter-photo figcaption {font-size:9px}
-  .art-participate .questionQrSlide {grid-template-columns:1fr;gap:12px}
+  .art-participate .questionQrSlide {grid-template-columns:minmax(0,1fr);gap:16px}
+  .art-participate .questionQrCard {width:min(100%,290px);padding:8px;border-radius:12px}
   .art-participate .scan-arrow {display:none}
-  .art-participate #questionQr {width:150px}
+  .art-participate .questionQrSlide > div:first-child ol {font-size:clamp(14px,3.8cqw,19px)}
   .art-businesses .choices button {min-height:40px;padding:7px 14px}
   .places-strip {height:143px;gap:5px}
   .art-postcards .cards {grid-template-columns:1fr;gap:4px}
