@@ -1,0 +1,160 @@
+/* Container-scoped interfaces for the phone on slide 11. */
+.etz-app {
+  --etz-font:clamp(11px,4.5cqi,16px);
+  --etz-muted:#54637a;
+  --etz-text:#18243c;
+  width:100%;height:100%;min-width:0;min-height:0;
+  display:flex;flex-direction:column;
+  color:var(--etz-text);background:#f6f9fc;
+  line-height:1.32;container-type:inline-size;
+}
+.etz-app [hidden] {display:none!important}
+.etz-app svg {width:1.2em;height:1.2em;flex:none}
+.etz-app button {
+  display:flex;align-items:center;justify-content:center;gap:.3em;
+  min-height:34px;border-radius:8px;border:0;padding:.48em .64em;
+  color:var(--etz-text);background:none;font:inherit;font-weight:720;
+  cursor:pointer;
+}
+.etz-app button:hover {filter:none;background:#e5effa}
+.etz-app :is(button,a,input):focus-visible {outline:2px solid #6247a5;outline-offset:-3px}
+.etz-app .etz-scroll {
+  position:relative;flex:1;min-height:0;min-width:0;overflow:auto;
+  overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#63789599 transparent;
+  font-size:var(--etz-font);
+}
+.etz-feed-head {
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:.5em .7em;background:#1c395c;color:white;
+  font-family:var(--display);font-size:clamp(20px,7.8cqi,30px);
+}
+.etz-practice {
+  font-family:system-ui,sans-serif;font-size:.49em;font-weight:780;letter-spacing:.045em;
+  border-radius:999px;padding:.28em .55em;color:#17314e;background:#d7eafa;
+}
+.etz-feed-tabs {
+  display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px 7px;
+  background:#e8f0fa;border-bottom:1px solid #d2dfed;
+  font-size:clamp(11px,4.4cqi,15px);
+}
+.etz-feed-tabs button {min-height:30px}
+.etz-feed-tabs button[aria-pressed=true] {color:#143d68;background:#fff;box-shadow:0 1px 2px #2d507326}
+.etz-post {padding:.72em .75em .33em;background:#fff;overflow-wrap:anywhere}
+.etz-author {display:flex;align-items:center;gap:.6em}
+.etz-avatar {
+  display:grid;place-items:center;width:2.55em;aspect-ratio:1;flex:none;
+  border-radius:50%;background:#dce9fb;color:#234e83;
+  font-weight:820;letter-spacing:.025em
+}
+.etz-author strong {display:block;font-size:1.04em}
+.etz-author small {display:flex;align-items:center;gap:.23em;color:var(--etz-muted);font-size:.82em}
+.etz-author small svg {width:.92em;height:.92em}
+.etz-app .etz-pub-copy {margin:.67em 0;line-height:1.42}
+.etz-post .etz-media {
+  position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:8px;
+  background:#234d48;color:#fff;
+}
+.etz-media img {display:block;width:100%;height:100%;object-fit:cover}
+.etz-media figcaption {
+  position:absolute;inset:0 0 auto;color:#fff;padding:.62em .68em 2.5em;
+  background:linear-gradient(#102f2cec,#102f2cd9 54%,transparent);
+}
+.etz-media figcaption strong {
+  display:block;font-family:var(--display);font-size:clamp(20px,9.1cqi,37px);letter-spacing:-.035em;line-height:.98;
+}
+.etz-media figcaption a {display:inline-block;margin:.4em 0 0;color:#eefaf4;font-size:.74em}
+.etz-card-link {
+  display:flex;align-items:center;justify-content:space-between;gap:.52em;border-radius:0 0 8px 8px;
+  padding:.52em .18em .37em;
+}
+.etz-card-link strong,.etz-card-link small {display:block}
+.etz-card-link small {color:var(--etz-muted)}
+.etz-counts {
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:.32em;
+  color:var(--etz-muted);font-size:.84em;padding:.3em .15em .34em;
+}
+.etz-counts b {font-weight:760;color:var(--etz-text)}
+.etz-actions {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:4px 3px;gap:3px;
+  flex:none;border-top:1px solid #d4dfeb;background:#fff;
+  font-size:clamp(9px,3.8cqi,14px);
+}
+.etz-actions button {flex-direction:column;gap:2px;min-width:0;padding:.35em .2em}
+.etz-app .etz-actions .etz-visit {
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  min-width:0;padding:.35em .16em;border-radius:8px;background:#255481;color:#fff;text-decoration:none;font-weight:750;
+}
+.etz-app .etz-actions .etz-visit:hover {background:#173f67}
+.etz-actions button[aria-pressed=true],.etz-actions button[aria-expanded=true] {color:#214566;background:#dfedfc}
+.etz-actions button[data-feed-action=like][aria-pressed=true] svg {fill:#a53452;stroke:#a53452}
+.etz-actions button[data-feed-action=save][aria-pressed=true] svg {fill:#587aae}
+.etz-comments {padding:.6em .75em .75em;background:#eff5fb}
+.etz-comments h3 {margin:.08em 0 .45em;font-size:1.05em}
+.etz-comments ul {display:grid;gap:.36em;padding:0;margin:0 0 .55em;list-style:none}
+.etz-comments li {display:flex;align-items:flex-start;gap:.45em}
+.etz-visitor-avatar {
+  display:grid;place-items:center;width:1.85em;aspect-ratio:1;flex:none;border-radius:50%;
+  background:#dbe6f5;color:#28527d;font-weight:750
+}
+.etz-comments li div {background:white;padding:.4em .55em;border-radius:2px 8px 8px;min-width:0;overflow-wrap:anywhere}
+.etz-comments li strong {font-size:.83em;color:#20466a}
+.etz-app .etz-comments li p {margin:.13em 0 0}
+.etz-comment-form {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px}
+.etz-comment-form input {
+  min-width:0;width:100%;padding:.45em .55em;border-radius:6px;border:1px solid #bacde2;background:#fff;
+  font:inherit;color:#15263c;
+}
+.etz-comment-form button[type=submit] {background:#254f82;color:#fff;min-height:33px}
+.etz-empty {display:grid;justify-items:center;text-align:center;padding:2em 1.15em;color:#384f69}
+.etz-empty button {background:#244b77;color:#fff}
+
+.etz-chat {--etz-muted:#43645e;--etz-text:#17362d;background:#f7fcf5}
+.etz-chat-head {
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.55em;
+  flex:none;padding:.6em .62em;background:#1b5149;color:#fff;font-size:clamp(11px,4.65cqi,17px);
+}
+.etz-chat-head strong,.etz-chat-head small {display:block}
+.etz-chat-head small {font-size:.81em;color:#ddf2eb}
+.etz-chat-head .etz-avatar {background:#d3f4e7;color:#1a4e46}
+.etz-chat-head [data-chat-reset] {color:#fff;background:#32665e;padding:.48em}
+.etz-chat-head [data-chat-reset]:hover {background:#42796f}
+.etz-app .etz-chat-topic {
+  display:flex;align-items:center;gap:.55em;background:#e3f1ec;border-bottom:1px solid #c7ddd3;
+  padding:.38em .62em;color:#234a41;text-decoration:none;font-size:clamp(10px,4.5cqi,15px);
+}
+.etz-chat-topic strong,.etz-chat-topic small {display:block}
+.etz-chat-topic small {font-size:.72em;color:#46685f}
+.etz-topic-icon {display:grid;place-items:center;width:2em;aspect-ratio:1;border-radius:7px;background:#c5e5da;color:#1d6153}
+.etz-chat .etz-thread {
+  display:flex;flex-direction:column;align-items:stretch;gap:.48em;padding:.68em;
+  background-color:#eaf4ec;
+  background-image:radial-gradient(ellipse at center,#74988636 0 1px,transparent 1.5px);
+  background-size:13px 13px;
+}
+.etz-day {
+  align-self:center;border-radius:999px;padding:.2em .62em;background:#dbe9df;color:#3a5d53;
+  font-size:.79em;font-weight:780;
+}
+.etz-bubble {
+  max-width:86%;align-self:flex-start;width:fit-content;background:#fff;
+  border-radius:2px 10px 10px 10px;box-shadow:0 1px 2px #17362d1a;
+  padding:.48em .64em .3em;overflow-wrap:anywhere;
+}
+.etz-bubble.etz-bubble-sent {align-self:flex-end;background:#d9f0d8;border-radius:10px 2px 10px 10px}
+.etz-app .etz-bubble p {margin:0}
+.etz-bubble small {
+  display:flex;justify-content:flex-end;align-items:center;gap:.2em;color:#4b665f;font-size:.73em;margin:.16em 0 0;
+}
+.etz-bubble small svg {color:#277762}
+.etz-compose {flex:none;padding:.45em .58em .56em;background:#f8fcf8;border-top:1px solid #c7dfd3;font-size:var(--etz-font)}
+.etz-chat-status {display:flex;align-items:center;justify-content:space-between;gap:.3em;margin:0 0 .36em}
+.etz-chat-status strong {font-size:.88em;color:#173f36}
+.etz-chat-status small {font-size:.74em;color:var(--etz-muted);text-align:right}
+.etz-chat-options {display:grid;gap:4px}
+.etz-chat-options button {
+  justify-content:space-between;gap:.4em;width:100%;min-height:34px;
+  text-align:left;padding:.38em .55em;color:#21473d;background:#e2f2e9;border:1px solid #c4ded1;
+  line-height:1.2;font-size:.88em;
+}
+.etz-chat-options button:hover {background:#d4eadf}
+.etz-chat-options button svg {color:#256e60}

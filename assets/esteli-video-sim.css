@@ -1,0 +1,314 @@
+/* Original touch interfaces for the vertical social examples. */
+.ev-app {
+  --ev-bg:#161321;
+  --ev-panel:#262133;
+  --ev-fg:#fbf9ff;
+  --ev-muted:#cec4dd;
+  --ev-accent:#e8c5ff;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100%;
+  min-height:0;
+  overflow:hidden;
+  background:var(--ev-bg);
+  color:var(--ev-fg);
+  font-family:system-ui,sans-serif;
+  font-size:clamp(10px,.96vw,15px);
+  line-height:1.28;
+}
+.ev-tiktok {
+  --ev-bg:#0f191b;
+  --ev-panel:#223233;
+  --ev-muted:#bed3d1;
+  --ev-accent:#94eedc;
+}
+.ev-instagram[data-view="2"] {
+  --ev-bg:#fbf7ff;
+  --ev-panel:#eee4f9;
+  --ev-fg:#261938;
+  --ev-muted:#534864;
+  --ev-accent:#6c397a;
+}
+.ev-app *, .ev-app *::before, .ev-app *::after {box-sizing:border-box}
+.ev-app button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+}
+.ev-app button:disabled {opacity:.43;cursor:default}
+.ev-app button:focus-visible,.ev-credit:focus-visible {
+  outline:2px solid #ffe184;
+  outline-offset:2px;
+}
+.ev-instagram[data-view="2"] button:focus-visible {outline-color:#6a3278}
+.ev-app svg {display:block;width:1.2em;height:1.2em;flex:none}
+.ev-top {
+  flex:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:.5em;
+  padding:.65em .9em .45em;
+}
+.ev-top > span:first-child {
+  display:flex;
+  align-items:center;
+  gap:.38em;
+  font-size:1.17em;
+  font-weight:780;
+}
+.ev-top > span:last-child {
+  color:var(--ev-muted);
+  font-size:.77em;
+  font-weight:650;
+}
+.ev-tiktok .ev-top {padding-bottom:.65em;border-bottom:1px solid #ffffff24}
+.ev-tabs {
+  display:flex;
+  gap:.3em;
+  flex:none;
+  padding:.25em .7em .54em;
+}
+.ev-tabs button {
+  flex:1;
+  min-height:24px;
+  padding:.32em .25em;
+  border-radius:.55em;
+  background:var(--ev-panel);
+  font-size:.88em;
+  font-weight:755;
+}
+.ev-tabs button[aria-pressed="true"] {background:#e8c5ff;color:#272037}
+.ev-instagram[data-view="2"] .ev-tabs button[aria-pressed="true"] {background:#6c397a;color:white}
+.ev-body {flex:1;min-height:0;overflow:hidden}
+.ev-player,.ev-story,.ev-carousel {
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  width:100%;
+  min-height:0;
+}
+.ev-stage {
+  display:grid;
+  place-items:center;
+  flex:1 1 0;
+  min-height:0;
+  width:100%;
+  container-type:size;
+  overflow:hidden;
+}
+.ev-video,.ev-card {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border-radius:.55em;
+  color:white;
+  background:#143138;
+  touch-action:pan-y;
+}
+.ev-video {width:min(100cqw,56.25cqh);aspect-ratio:9/16}
+.ev-card {width:min(100cqw,80cqh);aspect-ratio:4/5}
+.ev-media,.ev-media img,.ev-video::after,.ev-card::after {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.ev-media img {display:block;object-fit:cover;user-select:none;pointer-events:none}
+.ev-video::after,.ev-card::after {
+  content:"";
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,#08121498,transparent 25%,transparent 43%,#0a0a11b8 90%,#090a13ec);
+}
+.ev-card::after {background:linear-gradient(0deg,#110f1eda,transparent 70%)}
+.ev-overlay-top,.ev-overlay-bottom,.ev-actions,.ev-story-top,.ev-story-copy,.ev-carousel-copy,.ev-car-controls {
+  position:absolute;
+  z-index:2;
+}
+.ev-overlay-top {inset:.66em .55em auto}
+.ev-byline {display:inline-flex;align-items:center;gap:.4em;font-size:.91em;font-weight:790}
+.ev-overlay-top .ev-byline,.ev-story-top .ev-byline {
+  text-shadow:0 1px 3px #000,0 0 12px #000;
+}
+.ev-avatar {
+  display:inline-grid;
+  place-items:center;
+  width:1.95em;
+  height:1.95em;
+  border-radius:50%;
+  background:#ecd1fa;
+  color:#341c48;
+  font-size:.8em;
+  font-weight:850;
+  text-shadow:none;
+}
+.ev-tiktok .ev-avatar,.ev-tiktok .ev-actions button[aria-pressed="true"] {background:#94eedc;color:#193934}
+.ev-actions {
+  right:.55em;
+  bottom:3.52em;
+  display:grid;
+  gap:.45em;
+}
+.ev-actions button,.ev-car-controls button,.ev-app .ev-play {
+  display:grid;
+  place-items:center;
+  width:2.15em;
+  min-width:25px;
+  aspect-ratio:1;
+  border-radius:50%;
+  color:white;
+  background:#111321ba;
+}
+.ev-actions button[aria-pressed="true"] {background:#ecc5fc;color:#38244e}
+.ev-actions button[aria-pressed="true"] svg,.ev-feed-actions button[aria-pressed="true"] svg {fill:currentColor}
+.ev-app .ev-play {
+  position:absolute;
+  z-index:3;
+  inset:47% auto auto 50%;
+  translate:-50% -50%;
+  width:2.85em;
+  min-width:35px;
+  border:1px solid #ffffff80;
+  background:#0f0b20ad;
+}
+.ev-playing .ev-play {inset:3em auto auto auto;left:auto;right:.62em;translate:0;width:2.25em;min-width:25px}
+.ev-overlay-bottom {inset:auto .54em .47em}
+.ev-caption {display:grid;gap:.18em;max-width:calc(100% - 2.5em);margin-bottom:.5em;text-shadow:0 1px 4px #000,0 0 10px #000}
+.ev-caption span {font-size:.77em;font-weight:680}
+.ev-caption strong {font-size:1.12em;line-height:1.12}
+.ev-progress {height:3px;background:#ffffff72;border-radius:99px;overflow:hidden}
+.ev-progress span {display:block;height:100%;background:#f7d1ff}
+.ev-tiktok .ev-progress span {background:#94eedc}
+.ev-time {display:block;margin-top:.26em;color:white;font-size:.72em;font-variant-numeric:tabular-nums}
+.ev-share {
+  position:absolute;
+  z-index:4;
+  inset:auto 3em 2.9em .55em;
+  padding:.55em;
+  border:1px solid #ffffff50;
+  border-radius:.57em;
+  background:#211835f2;
+  font-size:.78em;
+}
+.ev-share span {display:block}
+.ev-scenes,.ev-story-nav {
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.38em;
+  padding:.36em .6em .12em;
+}
+.ev-scenes button,.ev-story-nav button {
+  min-height:23px;
+  padding:.26em .5em;
+  border-radius:.4em;
+  background:var(--ev-panel);
+  color:var(--ev-fg);
+  font-size:.85em;
+  font-weight:700;
+  white-space:nowrap;
+}
+.ev-scenes button[aria-pressed="true"] {background:var(--ev-accent);color:#211831}
+.ev-story-nav span {font-size:.84em;font-weight:690}
+.ev-credits-row {
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.4em;
+  padding:.27em .66em .44em;
+  color:var(--ev-muted);
+  font-size:.69em;
+  font-weight:630;
+}
+.ev-credits-row .ev-credit {color:inherit;text-decoration-thickness:1px}
+.ev-story-top {
+  inset:.38em .55em auto;
+  display:grid;
+  gap:.42em;
+}
+.ev-story-bars {display:flex;gap:.25em}
+.ev-story-bars button {
+  position:relative;
+  flex:1;
+  height:12px;
+  border-radius:99px;
+}
+.ev-story-bars button::after {
+  content:"";
+  width:100%;
+  height:3px;
+  border-radius:99px;
+  background:#ffffff7a;
+}
+.ev-story-bars button[aria-pressed="true"]::after {background:#fff}
+.ev-story-copy {
+  inset:auto .57em 1em;
+  padding:.65em;
+  border:1px solid #ffffff44;
+  border-radius:.75em;
+  background:#231929de;
+}
+.ev-story-copy > strong {display:block;font-size:1.08em;line-height:1.13}
+.ev-story-copy p,.ev-carousel-copy p {margin:.28em 0 .45em;font-size:.85em}
+.ev-poll {display:grid;grid-template-columns:1fr 1fr;gap:.26em}
+.ev-poll button,.ev-app .ev-story-reply {
+  min-height:23px;
+  padding:.33em .25em;
+  border-radius:.42em;
+  background:#f1def9;
+  color:#312240;
+  font-size:.76em;
+  font-weight:785;
+}
+.ev-poll button[aria-pressed="true"] {background:#7a418c;color:white}
+.ev-app .ev-story-reply {gap:.3em;padding:.35em .45em}
+.ev-story-feedback:not(:empty) {margin-top:.4em;font-size:.76em;font-weight:680}
+.ev-feed-head,.ev-feed-actions {
+  flex:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:.45em;
+  padding:.5em .74em;
+}
+.ev-card-number {font-size:.77em;font-weight:730}
+.ev-carousel-copy {
+  inset:auto .65em .45em;
+  pointer-events:none;
+  text-shadow:0 1px 4px #000;
+}
+.ev-carousel-copy strong {font-size:1.2em;line-height:1.1}
+.ev-car-controls {
+  inset:46% .32em auto;
+  display:flex;
+  justify-content:space-between;
+}
+.ev-car-controls button {width:1.8em;min-width:22px}
+.ev-dots {display:flex;justify-content:center;gap:.06em;padding-top:.22em}
+.ev-dots button {width:20px;height:20px}
+.ev-dots button::before {content:"";width:6px;height:6px;border-radius:50%;background:#ae98ba}
+.ev-dots button[aria-pressed="true"]::before {background:#763b83}
+.ev-feed-actions {justify-content:flex-start;padding-top:0;padding-bottom:0}
+.ev-feed-actions button {
+  width:2em;
+  aspect-ratio:1;
+  border-radius:.4em;
+  background:var(--ev-panel);
+}
+.ev-feed-actions button[aria-pressed="true"] {color:#6c397a}
+.ev-feed-actions span {margin-left:auto;font-size:.75em;font-weight:740}
+
+@media (max-width:720px) {
+  .ev-app {font-size:clamp(10px,3.15vw,14px)}
+}

@@ -4,6 +4,7 @@ const EsteliInteractivos = (() => {
     11: {
       cases: EsteliRedes.cases,
       label: 'Redes sociales',
+      portrait: true,
       invite: 'Elegí una red para ver un ejemplo de Estelí Tours.'
     },
     39: {
@@ -58,6 +59,7 @@ const EsteliInteractivos = (() => {
     view.hidden = !example;
     slide.hidden = Boolean(example);
     document.body.classList.toggle('wa-example-open',Boolean(example));
+    view.classList.toggle('social-view',Boolean(example && groups[example.number].portrait));
     if (!example) {
       if (previous) {
         view.replaceChildren();
@@ -70,9 +72,15 @@ const EsteliInteractivos = (() => {
     const item = group.cases[slug];
     view.dataset.exampleSlide = number;
     view.dataset.example = slug;
+    const device = group.portrait
+      ? '<div class="social-phone-area"><div class="social-phone"><div class="wa-device-content" id="wa-demo"></div></div></div>'
+      : `<div class="wa-device">
+        <div class="wa-device-head"><span class="wa-avatar" aria-hidden="true">ET</span><div><strong>Estelí Tours</strong><small>${group.label} · simulación</small></div></div>
+        <div class="wa-device-content" id="wa-demo"></div>
+      </div>`;
     view.innerHTML = `<div class="wa-page-head">
       <a id="wa-back" class="wa-back" href="#${number}">← Volver a la diapositiva ${number}</a>
-      <span class="wa-practice">Ejemplo de capacitación</span>
+      <span class="wa-practice">${group.portrait?'Simulador':'Ejemplo'} de capacitación</span>
     </div>
     <div class="wa-example-body">
       <div class="wa-explain">
@@ -81,10 +89,7 @@ const EsteliInteractivos = (() => {
         <p class="wa-intro">${item.intro}</p>
         <div class="wa-tip"><strong>Aplicalo a tu negocio</strong><p>${item.tip}</p></div>
       </div>
-      <div class="wa-device">
-        <div class="wa-device-head"><span class="wa-avatar" aria-hidden="true">ET</span><div><strong>Estelí Tours</strong><small>${item.deviceLabel || group.label} · simulación</small></div></div>
-        <div class="wa-device-content" id="wa-demo"></div>
-      </div>
+      ${device}
     </div>
     <nav class="wa-example-nav" aria-label="Ejemplos de Estelí Tours">${Object.entries(group.cases).map(([id,topic]) =>
       `<a href="${route({number,slug:id})}"${id===slug?' aria-current="page"':''}>${topic.title}</a>`).join('')}</nav>`;

@@ -1,0 +1,62 @@
+.wa-view.social-view {
+  --social-accent:#8978c8;
+  --social-paper:#f2ebfa;
+  background:var(--social-paper);
+  padding:clamp(15px,1.8vw,34px) clamp(15px,2.35vw,42px);
+  min-height:0;grid-template-rows:auto auto auto;gap:.52cqw;
+}
+.wa-example-open > .stage:has(.social-view:not([hidden])) {padding:7px 12px}
+.social-view[data-example=facebook] {--social-accent:#3975ae;--social-paper:#edf2fc}
+.social-view[data-example=instagram] {--social-accent:#9c4277;--social-paper:#f7eafa}
+.social-view[data-example=tiktok] {--social-accent:#36766c;--social-paper:#e7f3f3}
+.social-view[data-example=whatsapp] {--social-accent:#2a7460;--social-paper:#e8f6ed}
+.social-view .wa-example-body {
+  grid-template-columns:minmax(0, .91fr) minmax(0, 1.09fr);
+  gap:3.2cqw;padding:0;
+}
+.social-view .wa-explain {max-width:48ch}
+.social-view .wa-explain h1 {font-size:clamp(40px,5.65cqw,101px)}
+.social-view .wa-intro {max-width:39ch}
+.social-view .wa-back {outline-offset:3px}
+.social-view .wa-example-nav a[aria-current] {background:var(--social-accent)}
+.social-view .wa-tip {
+  border-left-color:var(--social-accent);background:#ffffffe0;max-width:37ch;
+}
+.social-phone-area {
+  min-width:0;display:grid;place-items:center;
+  background:radial-gradient(ellipse at center,color-mix(in srgb,var(--social-accent) 12%,transparent),transparent 68%);
+}
+.social-phone {
+  width:min(100%,clamp(220px,calc((100dvh - 208px) * 9 / 17),390px));
+  aspect-ratio:9 / 17;
+  position:relative;isolation:isolate;
+  border:clamp(5px,.62cqw,10px) solid #231934;
+  border-top-width:clamp(9px,1cqw,15px);
+  border-radius:clamp(19px,2.1cqw,32px);
+  background:#171120;
+  box-shadow:0 14px 27px #24162f32;
+}
+.social-phone::before {
+  content:"";position:absolute;top:calc(-1 * clamp(6px,.68cqw,10px));
+  left:42%;width:16%;height:3px;border-radius:10px;background:#c7bad3;
+}
+.social-phone > #wa-demo {
+  position:absolute;inset:0;width:100%;height:100%;min-height:0;min-width:0;
+  border-radius:clamp(13px,1.55cqw,24px);
+  background:#fff;overflow:hidden;overscroll-behavior:contain;
+  font-size:clamp(13px,1.05vw,18px);line-height:1.3;
+}
+.social-phone :is(button,a,input):focus-visible {outline-offset:-2px}
+@media (max-width:700px), (orientation:portrait) and (max-width:950px) {
+  .wa-view.social-view {gap:11px;padding:12px}
+  .social-view .wa-example-body {
+    grid-template-columns:1fr;gap:9px;padding:3px 0;
+  }
+  .social-view .wa-explain {display:contents}
+  .social-view .wa-explain .wa-business {font-size:12px;margin:0;grid-row:1}
+  .social-view .wa-explain h1 {font-size:clamp(32px,9vw,52px);line-height:1;grid-row:2;margin:0}
+  .social-view .wa-intro {grid-row:3;margin:0;font-size:14px}
+  .social-view .wa-tip {grid-row:5;font-size:13px}
+  .social-phone-area {grid-row:4}
+  .social-phone {width:min(100%,286px)}
+}
