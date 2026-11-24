@@ -1,0 +1,74 @@
+.actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.actions>button{min-height:44px;touch-action:manipulation}
+#qrShortcut{background:#ffffff20}
+.qaBell{display:inline-flex;align-items:center;gap:7px;position:relative;background:#203a63;color:#fff}
+.qaBell svg{width:17px;height:17px;flex:none}
+.qaBell.is-ready{background:#173d33}
+.qaBell.ring svg{transform-origin:50% 12%;animation:qa-ring .8s ease-in-out 2}
+.qaBadge{display:inline-grid;min-width:22px;height:22px;place-items:center;padding:0 5px;border-radius:999px;background:#ed238c;color:#fff;font-size:12px;font-weight:850;line-height:1}
+.qaBadge.is-empty{background:#63758b}
+@keyframes qa-ring{0%,100%{transform:rotate(0)}20%{transform:rotate(18deg)}40%{transform:rotate(-15deg)}60%{transform:rotate(10deg)}80%{transform:rotate(-6deg)}}
+
+.questionQrSlide{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3cqw;width:100%;height:100%;color:#173d33}
+.questionQrSlide h2{font-size:2.35cqw;color:#173d33;margin:0 0 1cqw}
+.questionQrSlide p,.questionQrSlide li{font-size:1.85cqw;line-height:1.4}
+.questionQrSlide ol{padding-left:1.5em;margin:.8cqw 0}
+.questionQrHint{color:#5c776c;font-weight:700}
+.questionQrCard{width:min(29cqw,330px);padding:1.2cqw;background:#fff;border:1px solid #d6e0d6;border-radius:16px;box-shadow:0 10px 30px #102e2220;text-align:center}
+#questionQr{min-height:24cqw;display:grid;place-items:center}
+#questionQr canvas{width:100%;max-width:284px;height:auto;image-rendering:pixelated}
+#questionUrl{display:block;margin-top:.5rem;font-size:clamp(9px,1cqw,14px);overflow-wrap:anywhere;color:#315b76}
+
+.qaOverlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:16px;background:#061b1cba}
+.qaOverlay.active{display:flex}
+.presenterQaPanel{width:min(760px,100%);max-height:92vh;overflow:auto;border-radius:18px;background:#fffdf5;color:#173d33;box-shadow:0 22px 70px #0006}
+.qaPanelHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:20px 22px;background:#173d33;color:#fff}
+.qaPanelHeader h2{margin:5px 0;font-size:clamp(21px,4vw,29px);line-height:1.1}
+.qaPanelHeader p{margin:0;color:#d8e6d9;font-size:.92rem}
+.qaPanelKicker{font-size:.7rem;letter-spacing:.12em;font-weight:850;color:#efbd71;text-transform:uppercase}
+.qaPanelActions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.qaPanelActions button,.qaLoginBox button,.qaQuestionActions button{min-height:40px;padding:9px 12px;border-radius:9px;font-weight:750;touch-action:manipulation}
+.qaSoundToggle,.qaSecondary,.qaClose{border:1px solid #ffffff55;background:#ffffff15;color:#fff}
+.qaClose{font-size:21px;line-height:1}
+.qaLoginBox{padding:22px;max-width:560px}
+.qaLoginBox p{line-height:1.5;color:#576e61}
+.qaLoginBox form{display:grid;gap:9px}
+.qaLoginBox label{font-size:.85rem;font-weight:800}
+.qaLoginBox input{width:100%;padding:11px 12px;border:1px solid #cbd9ce;border-radius:9px;background:#fff;color:#173d33;font:inherit}
+.qaPrimary{margin-top:5px;border:0;background:#1b614d;color:#fff}
+.qaPrimary:disabled,.qaQuestionActions button:disabled{opacity:.55;cursor:wait}
+.qaMessage{min-height:1.25em;margin-top:4px;color:#963b3b;font-size:.85rem}
+.qaInbox{padding:18px 22px 8px}
+.qaSummary{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;background:#edf3ec;color:#315b4e;font-size:.88rem}
+.qaQuestionList{display:grid;gap:10px;margin:12px 0 4px;max-height:54vh;overflow-y:auto}
+.qaQuestionCard{padding:14px;border:1px solid #d9e3d9;border-radius:12px;background:#fff}
+.qaQuestionTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.qaQuestionTop time{font-size:.8rem;color:#708276}
+.qaQuestionName{font-size:.9rem;color:#245846}
+.qaQuestionText{margin:10px 0 13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.qaQuestionActions{display:flex;justify-content:flex-end}
+.qaMark{border:0;background:#deefe2;color:#1f6846}
+.qaEmpty{padding:28px 12px;text-align:center;color:#647a6d}
+.qaStatus{min-height:1.2em;margin:8px 22px 18px;font-size:.85rem;color:#176536}
+.qaStatus.error{color:#98283b}
+.qaStatus:empty{display:none}
+.qaOverlay .hidden{display:none!important}
+
+footer button{min-width:112px;min-height:48px;touch-action:manipulation}
+@media(max-width:700px){
+  .actions{gap:4px}
+  .actions>button{padding:8px 9px;font-size:11px}
+  .qaBell{gap:4px}
+  .questionQrSlide{grid-template-columns:1fr;justify-items:center;align-content:center;gap:10px;text-align:center}
+  .questionQrSlide p,.questionQrSlide li{font-size:clamp(14px,3.8cqw,19px)}
+  .questionQrSlide ol{text-align:left;display:inline-block;margin:0}
+  .questionQrCard{width:min(60cqw,280px);padding:12px}
+  #questionQr{min-height:0}
+  .qaPanelHeader{flex-direction:column;padding:18px}
+  .qaPanelActions{width:100%;justify-content:flex-start}
+  .qaInbox,.qaLoginBox{padding:16px}
+  .qaSummary{align-items:flex-start;flex-direction:column}
+  .qaQuestionList{max-height:48vh}
+  .qaStatus{margin:8px 16px 16px}
+}
+
