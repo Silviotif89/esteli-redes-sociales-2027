@@ -60,7 +60,7 @@ const EsteliStage = (() => {
     'signals':['heart','eye','spark'],
     'reception':['frame','layers','bolt','check'],
     'control-room':['bolt','layers','target'],
-    'objectives':['eye','arrow','chat','target','heart','frame'],
+    'objectives':['eye','arrow','chat','target','frame','heart'],
     'radar':['pin','frame','arrow'],
     'automation':['target','pin','spark'],
     'scorecard':['eye','heart','chat','check']

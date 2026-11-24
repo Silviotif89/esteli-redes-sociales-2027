@@ -1,0 +1,450 @@
+/* Objective selector and practice workspace for slide 45. */
+.slide.art-objectives .cards {
+  gap:clamp(6px,.65cqw,13px);
+}
+.slide.art-objectives .wa-case-link {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  min-width:0;
+  color:var(--ink);
+  border:1px solid #6e4e1927;
+  text-decoration:none;
+  transition:background .16s,border-color .16s,transform .16s;
+}
+.slide.art-objectives .wa-case-link:is(:hover,:focus-visible) {
+  background:#fff8e7;
+  border-color:#694781;
+  transform:translateY(-2px);
+}
+.slide.art-objectives .wa-case-link p {
+  font-weight:500;
+}
+.slide.art-objectives .wa-case-cta {
+  margin:.5em 0 0;
+  color:#4f3080;
+  font-size:clamp(12px,1.16cqw,20px);
+}
+.slide.art-objectives .foot a {color:inherit}
+
+.wa-example-open > .stage:has(.objectives-view:not([hidden])) {
+  padding:7px 12px;
+}
+.wa-view.objectives-view {
+  --objective-ink:#261c3c;
+  --objective-muted:#554d66;
+  --objective-rail:#2d2146;
+  --objective-violet:#53368e;
+  --objective-line:#ddd5e8;
+  --objective-canvas:#f8f6fb;
+  --objective-paper:#fff;
+  --objective-warm:#ffe296;
+  width:min(96vw,1580px);
+  min-height:0;
+  grid-template-rows:auto auto;
+  gap:clamp(9px,.9cqw,18px);
+  padding:clamp(12px,1.45vw,27px);
+  align-items:stretch;
+  color:var(--objective-ink);
+  background:#f2eaf9;
+}
+.objectives-view .objectives-route-head {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:clamp(7px,.78cqw,15px);
+  align-items:center;
+}
+.objectives-view .objectives-route-head h1 {
+  margin:0;
+  text-align:center;
+  font-family:var(--display);
+  font-size:clamp(17px,1.9cqw,32px);
+  line-height:1.15;
+  outline:none;
+}
+.objectives-view .objectives-route-head :is(.wa-back,.wa-practice) {
+  font-size:clamp(12px,1.06cqw,18px);
+}
+.objectives-view #wa-demo {min-width:0}
+.objectives-view .objective-app {
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  min-width:0;
+  min-height:clamp(455px,calc(100dvh - 165px),605px);
+  font:500 clamp(13px,1.03vw,17px)/1.4 var(--body);
+  background:var(--objective-canvas);
+  color:var(--objective-ink);
+  border:1px solid #c7b8dc;
+  border-radius:14px;
+  box-shadow:0 8px 24px #3623531e;
+  overflow:hidden;
+}
+.objective-app *, .objective-app *::before, .objective-app *::after {box-sizing:border-box}
+.objective-app :is(h2,h3,h4,p,figure,dl,dd) {margin:0}
+.objective-app :is(button,select) {font-family:inherit}
+.objective-app :is(a,button,select):focus-visible {
+  outline:3px solid #9673e6;
+  outline-offset:2px;
+}
+.objective-app [hidden] {display:none!important}
+.objective-app .objective-top {
+  display:flex;
+  justify-content:space-between;
+  gap:.65em 1em;
+  flex-wrap:wrap;
+  align-items:center;
+  min-height:0;
+  height:auto;
+  padding:.82em 1.1em;
+  border-bottom:1px solid var(--objective-line);
+  background:var(--objective-paper);
+  color:var(--objective-ink);
+}
+.objective-top :is(h2,h3,strong) {
+  display:block;
+  font-family:var(--display);
+  font-size:1.16em;
+  line-height:1.2;
+}
+.objective-top :is(p,small) {
+  color:var(--objective-muted);
+  font-size:.85em;
+}
+.objective-top .objective-progress {
+  padding:.33em .65em;
+  border:1px solid #e1d5f0;
+  border-radius:999px;
+  background:#f6effe;
+  color:#50337f;
+  font-size:.77em;
+  font-weight:730;
+}
+.objective-app .objective-body {
+  display:grid;
+  grid-template-columns:minmax(185px,20.5%) minmax(0,1fr) minmax(236px,28%);
+  min-width:0;
+  align-items:stretch;
+}
+.objective-app .objective-list {
+  display:flex;
+  flex-direction:column;
+  gap:.36em;
+  min-width:0;
+  padding:.9em .7em;
+  background:var(--objective-rail);
+  color:#f9f2fe;
+}
+.objective-list > :is(a,button),.objective-list li > :is(a,button) {
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:.55em;
+  min-height:3.34em;
+  min-width:0;
+  padding:.52em .55em;
+  color:inherit;
+  background:transparent;
+  border:1px solid transparent;
+  text-align:left;
+  text-decoration:none;
+  border-radius:8px;
+}
+.objective-list > ul,.objective-list > ol {
+  display:grid;
+  gap:.36em;
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+.objective-list :is(a,button):hover {background:#ffffff1c}
+.objective-list :is([aria-current=page],[aria-pressed=true]) {
+  border-color:#f8da85;
+  background:#ffe29a;
+  color:#211a30;
+}
+.objective-list .objective-symbol {
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:1.9em;
+  height:1.9em;
+  background:#ffffff22;
+  color:#f8e9ff;
+  border-radius:7px;
+}
+.objective-list :is([aria-current=page],[aria-pressed=true]) .objective-symbol {
+  background:#2d2146;
+  color:#ffe29a;
+}
+.objective-list .objective-symbol svg {width:1.06em;height:1.06em}
+.objective-list .objective-choice {display:grid;gap:.13em;min-width:0;line-height:1.18;overflow-wrap:anywhere}
+.objective-list .objective-choice :is(strong,b) {font-size:.95em;font-weight:780}
+.objective-list .objective-choice small {font-size:.75em;opacity:.9;font-weight:550}
+.objective-list > :is(p,h3,header) {
+  padding:.24em .55em .5em;
+  font-size:.75em;
+  color:#e8d9f7;
+  height:auto;
+  min-height:0;
+}
+.objective-app .objective-work {
+  min-width:0;
+  padding:clamp(13px,1.6vw,26px);
+  display:flex;
+  flex-direction:column;
+  gap:.68em;
+}
+.objective-work .objective-kicker {
+  color:#54378e;
+  font-size:.76em;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.objective-app .objective-work h2 {
+  color:var(--objective-ink);
+  font-family:var(--display);
+  font-size:clamp(23px,2.48cqw,41px);
+  line-height:1.06;
+  letter-spacing:-.028em;
+}
+.objective-work .objective-goal {
+  color:var(--objective-muted);
+  font-size:1.01em;
+  line-height:1.43;
+}
+.objective-app .objective-config {
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.75em;
+  padding:.8em;
+  background:#f1ecfa;
+  border:1px solid #e1d8f1;
+  border-radius:10px;
+}
+.objective-config > :is(.objective-reading,.objective-actions) {grid-column:1/-1}
+.objective-config :is(label,.objective-field) {
+  display:grid;
+  align-content:start;
+  gap:.35em;
+  min-width:0;
+  color:var(--objective-ink);
+  font-size:.9em;
+  font-weight:730;
+}
+.objective-config :is(label,.objective-field) label {display:block}
+.objective-config select {
+  max-width:100%;
+  min-width:0;
+  width:100%;
+  min-height:2.65em;
+  padding:.44em .48em;
+  border:1px solid #b8abcc;
+  border-radius:6px;
+  background:#fff;
+  color:var(--objective-ink);
+  font:600 1em/1.2 var(--body);
+}
+.objective-config select:disabled {opacity:1;background:#f9f6fd;color:#584c66}
+.objective-app .objective-reading {
+  display:grid;
+  gap:.38em;
+  padding:.78em .85em;
+  border:1px solid #e5bf6b;
+  border-inline-start:4px solid #ae741c;
+  border-radius:7px;
+  background:#fff5d7;
+  color:#362746;
+  font-size:.9em;
+  line-height:1.4;
+}
+.objective-reading :is(h3,h4) {font-family:var(--display);font-size:1.08em}
+.objective-reading ul {margin:0;padding-inline-start:1.3em}
+.objective-reading :is(p,dd,li) {overflow-wrap:anywhere}
+.objective-app .objective-actions {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:.46em .7em;
+}
+.objective-actions :is(button,a) {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:2.55em;
+  padding:.45em .8em;
+  font-size:.9em;
+  line-height:1.2;
+  font-weight:750;
+  text-align:center;
+  border-radius:7px;
+}
+.objective-actions button {
+  background:var(--objective-violet);
+  color:#fff;
+  border:1px solid transparent;
+}
+.objective-actions button:hover {background:#432778}
+.objective-actions a {
+  color:#503281;
+  background:#fff;
+  border:1px solid #cdbee5;
+  text-decoration:none;
+}
+.objective-actions a:hover {background:#f2e9ff}
+.objective-app .objective-status {
+  padding:.5em .68em;
+  border:1px solid #b7d9c7;
+  border-radius:7px;
+  background:#eaf4ed;
+  color:#284d3e;
+  font-size:.85em;
+  font-weight:720;
+  overflow-wrap:anywhere;
+}
+.objective-app .objective-status:empty {display:none}
+.objective-app .objective-preview {
+  display:flex;
+  flex-direction:column;
+  gap:.65em;
+  min-width:0;
+  padding:clamp(11px,1.35vw,22px);
+  border-inline-start:1px solid var(--objective-line);
+  background:#f1ecf6;
+}
+.objective-preview :is(.objective-preview-head,header) {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:.33em;
+  min-height:0;
+  height:auto;
+  padding:0;
+  color:var(--objective-ink);
+}
+.objective-preview :is(h3,h4) {font-family:var(--display);font-size:1.08em;line-height:1.2}
+.objective-preview .objective-preview-head strong {font-family:var(--display);font-size:1.16em}
+.objective-preview .objective-preview-head small {
+  color:#604978;
+  font-size:.75em;
+  font-weight:680;
+}
+.objective-preview :is(.objective-ad,.objective-post,.objective-preview-card) {
+  min-width:0;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e0d6eb;
+  border-radius:9px;
+}
+.objective-preview figure {position:relative;overflow:hidden;border-radius:8px}
+.objective-preview img {
+  display:block;
+  width:100%;
+  aspect-ratio:2.17;
+  object-fit:cover;
+  object-position:50% 56%;
+  background:#d9e7dc;
+}
+.objective-preview figcaption {
+  padding:.23em .42em;
+  font-size:.7em;
+  color:#50465b;
+  background:#fbf8ff;
+}
+.objective-preview figcaption a {text-decoration:underline}
+.objective-preview :is(.objective-preview-copy,.objective-ad-copy,.objective-post-copy) {
+  color:var(--objective-muted);
+  font-size:.89em;
+  line-height:1.4;
+}
+.objective-preview .objective-preview-copy strong {display:block;color:var(--objective-ink)}
+.objective-preview :is(.objective-preview-cta,.objective-ad-cta) {
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  min-height:2em;
+  padding:.33em .65em;
+  color:#482972;
+  background:#e9dafa;
+  border-radius:999px;
+  font-size:.81em;
+  font-weight:750;
+  line-height:1.17;
+}
+.objective-preview .objective-preview-cta:hover {background:#ddc6f5}
+.objective-preview .objective-visitor {
+  padding:.54em .64em;
+  border:1px solid #d4c4e8;
+  border-radius:7px;
+  background:#fcf8ff;
+  color:#473d58;
+  font-size:.83em;
+}
+.objective-preview :is(.objective-metric,.objective-stat,.objective-stat-panel) {
+  display:grid;
+  gap:.24em;
+  padding:.59em .68em;
+  color:#22463a;
+  background:#e3f2eb;
+  border:1px solid #bddccc;
+  border-radius:8px;
+  font-size:.84em;
+}
+.objective-preview :is(.objective-metric,.objective-stat,.objective-stat-panel) strong {
+  color:#3b5d51;
+  font-weight:710;
+}
+.objective-preview .objective-metric b {
+  font-family:var(--display);
+  font-size:1.22em;
+  line-height:1.12;
+}
+
+@media (max-width:1030px) {
+  .objective-app .objective-body {
+    grid-template-columns:minmax(166px,24%) minmax(0,1fr) minmax(194px,28%);
+  }
+  .objective-app .objective-config {grid-template-columns:1fr}
+}
+@media (max-width:760px), (orientation:portrait) and (max-width:950px) {
+  .wa-example-open > .stage:has(.objectives-view:not([hidden])) {padding:7px}
+  .wa-view.objectives-view {width:100%;padding:9px}
+  .objectives-view .objectives-route-head {grid-template-columns:minmax(0,1fr) auto;gap:7px}
+  .objectives-view .objectives-route-head h1 {grid-column:1/-1;grid-row:2;text-align:left}
+  .objectives-view .objectives-route-head .wa-back {justify-self:start}
+  .objectives-view .objectives-route-head .wa-practice {font-size:10px;text-align:center}
+  .objectives-view .objective-app {min-height:0}
+  .objective-app .objective-top {padding:.6em .72em}
+  .objective-app .objective-body {grid-template-columns:minmax(0,1fr)}
+  .objective-app .objective-list,.objective-list > :is(ul,ol) {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-items:stretch;
+    gap:4px;
+  }
+  .objective-app .objective-list {padding:.48em}
+  .objective-list > :is(ul,ol),.objective-list > :is(p,h3,header) {grid-column:1/-1}
+  .objective-list > :is(a,button),.objective-list li > :is(a,button) {
+    width:100%;
+    height:100%;
+    min-height:44px;
+    gap:.35em;
+    padding:.33em .31em;
+  }
+  .objective-list .objective-symbol {width:1.52em;height:1.52em}
+  .objective-list .objective-symbol svg {width:.95em;height:.95em}
+  .objective-list .objective-choice :is(strong,b) {font-size:.84em}
+  .objective-list .objective-choice small {display:none}
+  .objective-app .objective-work,.objective-app .objective-preview {padding:.8em}
+  .objective-app .objective-config {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .objective-app .objective-preview {border-inline-start:0;border-top:1px solid var(--objective-line)}
+  .slide.art-objectives .wa-case-cta {font-size:12px}
+}
+@media (max-width:480px) {
+  .objective-app .objective-config {grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce) {
+  .slide.art-objectives .wa-case-link {transition:none;transform:none}
+}

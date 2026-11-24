@@ -16,12 +16,18 @@ const EsteliInteractivos = (() => {
     36: {
       cases: EsteliSuite.cases,
       label: 'Meta Business Suite',
-      workspace: true
+      workspace: 'suite'
     },
     39: {
       cases: EsteliWhatsApp.cases,
       label: 'WhatsApp Business',
       invite: 'Elegí un tema para ver cómo lo haría Estelí Tours.'
+    },
+    45: {
+      cases: EsteliObjetivos.cases,
+      label: 'Administrador de anuncios',
+      workspace: 'objectives',
+      invite: 'Elegí un objetivo para abrir una configuración de ejemplo.'
     }
   };
   const marker = `<div class="interactive-marker"><span class="interactive-badge">
@@ -44,12 +50,15 @@ const EsteliInteractivos = (() => {
     const group = groups[number];
     if (!group) return;
     slide.querySelector('.stage-heading').insertAdjacentHTML('afterbegin',marker);
-    if (group.workspace) {
+    if (group.workspace === 'suite') {
       decorateWorkspace(slide,number,group);
       return;
     }
     const subtitle = slide.querySelector('.subtitle');
     subtitle.append(' ',group.invite);
+    if (group.workspace === 'objectives') {
+      slide.querySelector('.foot').innerHTML = `<a href="${EsteliObjetivos.metaGuide}" target="_blank" rel="noopener">Guía oficial de objetivos de Meta</a> · Las opciones pueden variar según la cuenta y la configuración.`;
+    }
     const entries = Object.entries(group.cases);
     slide.querySelectorAll('.tile').forEach((tile,index) => {
       const [slug, lesson] = entries[index];
@@ -114,7 +123,9 @@ const EsteliInteractivos = (() => {
     slide.hidden = Boolean(example);
     document.body.classList.toggle('wa-example-open',Boolean(example));
     view.classList.toggle('social-view',Boolean(example && groups[example.number].portrait));
-    view.classList.toggle('suite-view',Boolean(example && groups[example.number].workspace));
+    const workspace = example && groups[example.number].workspace;
+    view.classList.toggle('suite-view',workspace === 'suite');
+    view.classList.toggle('objectives-view',workspace === 'objectives');
     if (!example) {
       if (previous) {
         view.replaceChildren();
@@ -128,7 +139,8 @@ const EsteliInteractivos = (() => {
     view.dataset.exampleSlide = number;
     view.dataset.example = slug;
     if (group.workspace) {
-      view.innerHTML = `<div class="wa-page-head suite-route-head">
+      const routeHead = workspace === 'suite' ? 'suite-route-head' : 'objectives-route-head';
+      view.innerHTML = `<div class="wa-page-head ${routeHead}">
         <a id="wa-back" class="wa-back" href="#${number}">← Volver a la diapositiva ${number}</a>
         <h1 id="wa-example-title" tabindex="-1">${group.label} · ${item.title}</h1>
         <span class="wa-practice">Simulador de capacitación</span>
