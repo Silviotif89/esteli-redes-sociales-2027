@@ -1,14 +1,21 @@
-.slide.art-reception .cards {column-gap:1.3cqw;row-gap:.9cqw;padding:0}
-.slide.art-reception .wa-case-link {
+.interactive-marker {display:flex;justify-content:flex-end;margin-bottom:.55cqw}
+.interactive-badge {
+  display:inline-flex;align-items:center;gap:.42em;padding:.39em .67em;
+  color:#312050;background:#eee3ff;border:1px solid #a890d0;border-radius:999px;
+  font-size:clamp(12px,1.13cqw,21px);font-weight:775;line-height:1.2;
+}
+.interactive-badge svg {width:1.2em;height:1.2em;color:#6428ad}
+.slide:is(.art-reception,.art-airwaves) .cards {column-gap:1.3cqw;row-gap:.9cqw;padding:0}
+.slide:is(.art-reception,.art-airwaves) .wa-case-link {
   display:block;position:relative;text-decoration:none;
   border:1px solid #1a453c42;border-radius:.9cqw;background:#effaf2;
   padding:1.05cqw 1.2cqw;color:#261735;transition:background .18s ease,transform .18s ease;
 }
-.slide.art-reception .wa-case-link:hover,.slide.art-reception .wa-case-link:focus-visible {
+.slide:is(.art-reception,.art-airwaves) .wa-case-link:is(:hover,:focus-visible) {
   background:#fff5d6;transform:translateY(-2px)
 }
-.slide.art-reception .wa-case-link h2 {margin-top:0}
-.slide.art-reception .wa-case-link p {font-weight:500}
+.slide:is(.art-reception,.art-airwaves) .wa-case-link h2 {margin-top:0}
+.slide:is(.art-reception,.art-airwaves) .wa-case-link p {font-weight:500}
 .wa-case-cta {
   display:inline-flex;align-items:center;gap:.5em;margin:.65cqw 0 0 5cqw;
   color:#2c4350;font-size:calc(1.22 * var(--u));font-weight:730;
@@ -69,6 +76,11 @@
   position:absolute;right:0;bottom:0;padding:.3em .4em;background:#201830e8;color:white;
   font-size:clamp(10px,.77cqw,14px);
 }
+.wa-view[data-example-slide="11"] {--wa-mint:#eee3ff;--wa-warm:#fff0c7}
+.wa-view[data-example-slide="11"] .wa-business {color:#4b346a}
+.wa-view[data-example="facebook"] .wa-device-head {background:#294d84}
+.wa-view[data-example="instagram"] .wa-device-head {background:#76365f}
+.wa-view[data-example="tiktok"] .wa-device-head {background:#272337}
 .wa-profile-data,.wa-label-state {padding:.65em .85em .8em}
 .wa-device-content h2 {font-family:var(--display);font-size:1.33em;margin:0 0 .22em}
 .wa-device-content p {margin:.28em 0}
@@ -102,8 +114,9 @@
 .wa-example-nav a[aria-current] {background:#246258;color:#fff;border-color:transparent}
 
 @media (max-width:700px), (orientation:portrait) and (max-width:950px) {
-  .slide.art-reception .wa-case-link {border-radius:7px;padding:10px}
-  .slide.art-reception .cards {gap:8px}
+  .interactive-marker {margin-bottom:7px}
+  .slide:is(.art-reception,.art-airwaves) .wa-case-link {border-radius:7px;padding:10px}
+  .slide:is(.art-reception,.art-airwaves) .cards {gap:8px}
   .wa-case-cta {margin:5px 0 0 46px}
   .wa-example-open > .stage {padding:7px}
   .wa-view {width:100%;padding:15px;gap:8px}
@@ -114,5 +127,5 @@
   .wa-profile-photo {min-height:110px}
 }
 @media (prefers-reduced-motion:reduce) {
-  .slide.art-reception .wa-case-link {transition:none;transform:none}
+  .slide:is(.art-reception,.art-airwaves) .wa-case-link {transition:none;transform:none}
 }
