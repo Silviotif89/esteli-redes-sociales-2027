@@ -13,6 +13,11 @@ const EsteliInteractivos = (() => {
       portrait: true,
       invite: 'Abrí los dos y fijate qué información encuentra el visitante.'
     },
+    36: {
+      cases: EsteliSuite.cases,
+      label: 'Meta Business Suite',
+      workspace: true
+    },
     39: {
       cases: EsteliWhatsApp.cases,
       label: 'WhatsApp Business',
@@ -39,6 +44,10 @@ const EsteliInteractivos = (() => {
     const group = groups[number];
     if (!group) return;
     slide.querySelector('.stage-heading').insertAdjacentHTML('afterbegin',marker);
+    if (group.workspace) {
+      decorateWorkspace(slide,number,group);
+      return;
+    }
     const subtitle = slide.querySelector('.subtitle');
     subtitle.append(' ',group.invite);
     const entries = Object.entries(group.cases);
@@ -58,6 +67,45 @@ const EsteliInteractivos = (() => {
     });
   }
 
+  function decorateWorkspace(slide, number, group) {
+    const content = slide.querySelector('.content');
+    const foot = slide.querySelector('.foot');
+    foot.innerHTML = '<a href="https://eventsmanager.facebook.com/business/learn/lessons/introduction-meta-business-suite" target="_blank" rel="noopener">Guía oficial de Meta</a> · Las opciones pueden variar según la cuenta y el dispositivo.';
+    const topics = Object.entries(group.cases);
+    const list = document.createElement('nav');
+    list.className = 'suite-launch-steps';
+    list.setAttribute('aria-label','Pasos del simulador');
+    content.querySelectorAll('.tile').forEach((tile,index)=>{
+      const [slug] = topics[index];
+      const name = tile.querySelector('h2');
+      const description = tile.querySelector('p');
+      const link = document.createElement('a');
+      link.href = route({number,slug});
+      link.dataset.waCase = slug;
+      link.setAttribute('aria-label','Simular paso: ' + name.textContent);
+      link.innerHTML = `<span class="suite-launch-step-number" aria-hidden="true">${index+1}</span><span></span><span class="suite-launch-arrow" aria-hidden="true">↗</span>`;
+      link.children[1].append(name,description);
+      list.append(link);
+    });
+    content.innerHTML = `<div class="suite-launch">
+      <div class="suite-launch-intro">
+        <svg class="suite-launch-art" viewBox="0 0 230 210" aria-hidden="true" fill="none">
+          <rect x="24" y="38" width="170" height="117" rx="15" stroke="currentColor" stroke-width="4"/>
+          <path d="M24 68h170M69 68v87M41 54h2m10 0h2m10 0h2M41 85h16m-16 16h16m-16 16h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <rect x="81" y="81" width="101" height="43" rx="8" stroke="currentColor" stroke-width="4"/>
+          <path d="m88 116 19-18 12 12 18-16 19 22m-75 21h61" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="183" cy="155" r="30" fill="#ffd77d" stroke="#241d42" stroke-width="4"/>
+          <path d="m172 155 8 8 15-17" stroke="#241d42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="suite-launch-brand">Estelí Tours · cuenta de ejemplo</p>
+        <h2>Del borrador al planificador</h2>
+        <p>Mostrá el proceso completo o abrí directamente un paso.</p>
+        <a class="suite-launch-cta" href="${route({number,slug:topics[0][0]})}">Abrir simulador <span aria-hidden="true">→</span></a>
+      </div>
+    </div>`;
+    content.firstElementChild.append(list);
+  }
+
   function present(example, slide) {
     const view = document.getElementById('wa-example');
     const previous = active;
@@ -66,6 +114,7 @@ const EsteliInteractivos = (() => {
     slide.hidden = Boolean(example);
     document.body.classList.toggle('wa-example-open',Boolean(example));
     view.classList.toggle('social-view',Boolean(example && groups[example.number].portrait));
+    view.classList.toggle('suite-view',Boolean(example && groups[example.number].workspace));
     if (!example) {
       if (previous) {
         view.replaceChildren();
@@ -78,6 +127,18 @@ const EsteliInteractivos = (() => {
     const item = group.cases[slug];
     view.dataset.exampleSlide = number;
     view.dataset.example = slug;
+    if (group.workspace) {
+      view.innerHTML = `<div class="wa-page-head suite-route-head">
+        <a id="wa-back" class="wa-back" href="#${number}">← Volver a la diapositiva ${number}</a>
+        <h1 id="wa-example-title" tabindex="-1">${group.label} · ${item.title}</h1>
+        <span class="wa-practice">Simulador de capacitación</span>
+      </div>
+      <div id="wa-demo" class="wa-device-content suite-route-app"></div>`;
+      item.render(view.querySelector('#wa-demo'));
+      document.getElementById('notes').classList.remove('open');
+      view.querySelector('h1').focus({preventScroll:true});
+      return;
+    }
     const device = group.portrait
       ? '<div class="social-phone-area"><div class="social-phone"><div class="wa-device-content" id="wa-demo"></div></div></div>'
       : `<div class="wa-device">

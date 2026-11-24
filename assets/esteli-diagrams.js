@@ -126,35 +126,6 @@ const EsteliDiagrams = (() => {
     });
   }
 
-  function workflow(content, items) {
-    const steps = [
-      ['camera','Elegí el formato','Publicación · Historia · Reel'],
-      ['pen','Completá la pieza','Foto o video · Texto · Contacto'],
-      ['ticket','Confirmá la programación','Fecha · Hora · Vista previa'],
-      ['chart','Revisá qué pasó','Mensajes · Estadísticas']
-    ];
-    content.innerHTML = `<div class="di-workflow">
-      <ol class="di-workflow-sequence">
-        ${items.map(([number,title,description],i)=>`<li style="${tone(i)}"><button type="button" data-di-step aria-pressed="false"><b>${safe(number)}</b><span><strong>${safe(title)}</strong><small>${safe(description)}</small></span></button></li>`).join('')}
-      </ol>
-      <div class="di-workbench" aria-live="polite">
-        <span class="di-workbench-count"></span>
-        <strong></strong>
-        <p></p>
-        <div class="di-workbench-icon" aria-hidden="true"></div>
-      </div>
-    </div>`;
-    const surface = content.firstElementChild;
-    const workbench = surface.querySelector('.di-workbench');
-    activate(surface,0,i=>{
-      const [graphic, title, hint] = steps[i];
-      workbench.querySelector('.di-workbench-count').textContent = 'Paso ' + (i+1) + ' de ' + steps.length;
-      workbench.querySelector('strong').textContent = title;
-      workbench.querySelector('p').textContent = hint;
-      workbench.querySelector('.di-workbench-icon').innerHTML = icon(graphic);
-    });
-  }
-
   function service(content, items) {
     const examples = [
       '¿En qué fecha quieren venir y cuántas personas son?',
@@ -210,7 +181,7 @@ const EsteliDiagrams = (() => {
 
   const treatments = {
     10:['journey',journey], 19:['aida',aida], 20:['pas',pas],
-    35:['calendar',calendar], 36:['workflow',workflow], 41:['service',service],
+    35:['calendar',calendar], 41:['service',service],
     46:['hierarchy',hierarchy], 56:['roadmap',roadmap]
   };
 

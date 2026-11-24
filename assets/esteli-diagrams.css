@@ -141,40 +141,20 @@
 .di-day-detail p {margin:.1em 0 0;font-size:var(--di-body);line-height:1.22;color:var(--di-ink)}
 .slide.di-slide-calendar .content .foot {margin-top:.9cqw}
 
-/* An editorial workbench names the inputs needed at each publishing step. */
-.slide.di-slide-workflow {--surface:#c8e8fa}
-.di-workflow {
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
-  gap:clamp(12px,2.3cqw,42px);align-items:stretch;
-}
-.di-workflow-sequence,.di-service-sequence {display:grid;gap:.4cqw}
-.slide.di-slide .di-workflow-sequence button,.slide.di-slide .di-service-sequence button {
+/* The booking process uses the same structure for all replies. */
+.di-service-sequence {display:grid;gap:.4cqw}
+.slide.di-slide .di-service-sequence button {
   display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:.7em;
   width:100%;padding:clamp(8px,.75cqw,15px);border:0;border-bottom:1px solid #21163257;border-radius:0;background:none;
 }
-.slide.di-slide .di-workflow-sequence button[aria-pressed=true],.slide.di-slide .di-service-sequence button[aria-pressed=true] {
+.slide.di-slide .di-service-sequence button[aria-pressed=true] {
   background:var(--di-tone);border-radius:7px;border-color:transparent;
 }
-.di-workflow-sequence button b,.di-service-sequence button b {
+.di-service-sequence button b {
   display:grid;place-items:center;width:1.9em;aspect-ratio:1;background:#211632;color:#fff7ed;
   border-radius:50%;font-size:clamp(13px,1.31cqw,24px);
 }
-.di-workflow-sequence button span,.di-service-sequence button span {display:grid;gap:.24em}
-.di-workbench {
-  display:flex;flex-direction:column;justify-content:flex-end;position:relative;isolation:isolate;overflow:hidden;
-  border-radius:clamp(9px,1.5cqw,26px);padding:clamp(15px,2.1cqw,40px);
-  background:#261950;color:#fff7ed;
-}
-.di-workbench-count {display:block;color:var(--di-active);font-size:var(--di-micro);font-weight:780;letter-spacing:.13em;text-transform:uppercase}
-.di-workbench strong {
-  display:block;margin:.23em 0 .15em;max-width:10ch;
-  font-family:var(--di-font);font-size:clamp(25px,4.1cqw,76px);line-height:.96;letter-spacing:-.06em;
-}
-.di-workbench p {font-size:var(--di-body);margin:0;color:#eee5f7}
-.di-workbench-icon {
-  position:absolute;top:-6%;right:-4%;z-index:-1;color:#fff7ed;opacity:.13;
-  font-size:clamp(100px,16cqw,300px);
-}
+.di-service-sequence button span {display:grid;gap:.24em}
 
 /* The selected booking detail changes a concrete reply in the sample conversation. */
 .slide.di-slide-service {--surface:#fce4d4}
@@ -269,8 +249,8 @@
   .slide.di-slide .di-day strong {font-size:clamp(12px,3.5vw,14px);overflow-wrap:anywhere}
   .slide.di-slide .di-day small {display:none}
   .di-day-detail {padding:8px 0}
-  .di-workflow,.di-service {grid-template-columns:1fr;gap:13px}
-  .di-workbench,.di-service-talk {min-height:120px}
+  .di-service {grid-template-columns:1fr;gap:13px}
+  .di-service-talk {min-height:120px}
   .di-service-talk {margin-bottom:10px}
   .di-hierarchy {grid-template-columns:1fr;gap:5px}
   .di-stack {height:clamp(110px,48cqw,250px)}
