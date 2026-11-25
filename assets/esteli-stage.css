@@ -136,6 +136,19 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
 .slide:is(.art-manifest,.art-trust,.art-control-room,.art-radar,.art-automation) .tile p {margin-left:5.75cqw}
 .art-manifest .tile:nth-child(2) .stage-item-icon,.art-automation .tile:nth-child(2) .stage-item-icon {background:var(--accent2)}
 .art-manifest .tile:nth-child(3) .stage-item-icon,.art-radar .tile:nth-child(3) .stage-item-icon {background:var(--yellow)}
+.slide:is(.art-manifest,.art-businesses) > .interactive-marker {
+  position:absolute;right:1.6cqw;top:1.6cqw;z-index:3;margin:0;
+}
+.profile-lesson-links {
+  display:flex;flex-wrap:wrap;gap:clamp(6px,.55cqw,12px);
+  margin:.7em 0 0 5.75cqw;
+}
+.profile-lesson-links a {
+  display:inline-flex;align-items:center;gap:.5em;min-height:38px;padding:.42em .75em;
+  background:#eee2ff;color:#382455;border:1px solid #987ab984;border-radius:999px;
+  text-decoration:none;font-size:clamp(13px,1.22cqw,22px);line-height:1.2;
+}
+.profile-lesson-links a:is(:hover,:focus-visible) {background:#382455;color:#fff}
 
 .art-participate .content {justify-content:center}
 .art-participate .questionQrSlide {position:relative;gap:3cqw;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)}
@@ -155,8 +168,12 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
 }
 
 .art-businesses .choices {grid-template-columns:1fr!important;gap:.55cqw}
-.art-businesses .choices button {background:#fff8e6;color:#291830;border:0;padding:.64cqw 1.6cqw;font-size:calc(1.8 * var(--u));border-radius:40px}
-.art-businesses .choices button.chosen {background:var(--plum);color:#fff7e9}
+.art-businesses .business-options a {
+  display:flex;justify-content:space-between;align-items:center;gap:1em;min-height:40px;
+  background:#fff8e6;color:#291830;padding:.64cqw 1.6cqw;
+  font-size:calc(1.8 * var(--u));border-radius:40px;text-decoration:none;
+}
+.art-businesses .business-options a:is([aria-current],:hover,:focus-visible) {background:var(--plum);color:#fff7e9}
 .art-businesses .stage-mark {left:-8%;top:24%;right:auto;width:43%;opacity:.33}
 .art-itinerary .cards {gap:0;row-gap:1.8cqw}
 .art-itinerary .tile {padding:1.15cqw 1.4cqw;border-top:3px solid var(--forest);border-bottom:0}
@@ -310,7 +327,10 @@ header button:focus-visible,footer button:focus-visible {outline-color:#ffe08b}
   .art-participate .questionQrCard {width:min(100%,290px);padding:8px;border-radius:12px}
   .art-participate .scan-arrow {display:none}
   .art-participate .questionQrSlide > div:first-child ol {font-size:clamp(14px,3.8cqw,19px)}
-  .art-businesses .choices button {min-height:40px;padding:7px 14px}
+  .slide:is(.art-manifest,.art-businesses) > .interactive-marker {position:static;margin-bottom:8px}
+  .profile-lesson-links {margin-left:0}
+  .profile-lesson-links a,.art-businesses .business-options a {min-height:44px}
+  .art-businesses .business-options a {padding:7px 14px}
   .places-strip {height:143px;gap:5px}
   .art-postcards .cards {grid-template-columns:1fr;gap:4px}
   .art-statistic .stat {font-size:26cqw}

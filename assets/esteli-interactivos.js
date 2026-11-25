@@ -1,6 +1,16 @@
 /* Teaching examples have their own hash routes, outside the numbered deck. */
 const EsteliInteractivos = (() => {
   const groups = {
+    2: {
+      cases: EsteliPerfilAlcance.cases,
+      label: 'Facebook e Instagram',
+      workspace: 'workshop'
+    },
+    4: {
+      cases: EsteliContenidoRubros.cases,
+      label: 'Laboratorio de contenidos',
+      workspace: 'workshop'
+    },
     11: {
       cases: EsteliRedes.cases,
       label: 'Redes sociales',
@@ -49,6 +59,16 @@ const EsteliInteractivos = (() => {
   function decorate(slide, number) {
     const group = groups[number];
     if (!group) return;
+    if (group.workspace === 'workshop') {
+      slide.insertAdjacentHTML('afterbegin',marker);
+      if (number === 2) {
+        const profileTile = slide.querySelector('.art-manifest .tile');
+        const links = Object.entries(group.cases).map(([slug,item])=>
+          `<a href="${route({number,slug})}" data-wa-case="${slug}">${item.title} <span aria-hidden="true">↗</span></a>`).join('');
+        profileTile.insertAdjacentHTML('beforeend',`<nav class="profile-lesson-links" aria-label="Comparaciones interactivas">${links}</nav>`);
+      }
+      return;
+    }
     slide.querySelector('.stage-heading').insertAdjacentHTML('afterbegin',marker);
     if (group.workspace === 'suite') {
       decorateWorkspace(slide,number,group);
@@ -124,7 +144,7 @@ const EsteliInteractivos = (() => {
     document.body.classList.toggle('wa-example-open',Boolean(example));
     view.classList.toggle('social-view',Boolean(example && groups[example.number].portrait));
     const workspace = example && groups[example.number].workspace;
-    view.classList.toggle('suite-view',workspace === 'suite');
+    view.classList.toggle('suite-view',workspace === 'suite' || workspace === 'workshop');
     view.classList.toggle('objectives-view',workspace === 'objectives');
     if (!example) {
       if (previous) {
@@ -139,7 +159,7 @@ const EsteliInteractivos = (() => {
     view.dataset.exampleSlide = number;
     view.dataset.example = slug;
     if (group.workspace) {
-      const routeHead = workspace === 'suite' ? 'suite-route-head' : 'objectives-route-head';
+      const routeHead = workspace === 'objectives' ? 'objectives-route-head' : 'suite-route-head';
       view.innerHTML = `<div class="wa-page-head ${routeHead}">
         <a id="wa-back" class="wa-back" href="#${number}">← Volver a la diapositiva ${number}</a>
         <h1 id="wa-example-title" tabindex="-1">${group.label} · ${item.title}</h1>
