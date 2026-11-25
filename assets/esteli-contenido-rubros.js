@@ -9,7 +9,6 @@ const EsteliContenidoRubros = (() => {
   const businesses = {
     hospedaje: {
       title: 'Hospedaje',
-      goal: 'Ayude al huésped a elegir, llegar y disfrutar su estadía.',
       posts: [
         {
           stage: 'atraer', title: 'Guía para elegir habitación', format: 'Carrusel',
@@ -50,7 +49,6 @@ const EsteliContenidoRubros = (() => {
     },
     restaurante: {
       title: 'Restaurante',
-      goal: 'Ayude al visitante a elegir qué comer y a coordinar su visita.',
       posts: [
         {
           stage: 'atraer', title: 'Un ingrediente, tres detalles', format: 'Reel',
@@ -91,7 +89,6 @@ const EsteliContenidoRubros = (() => {
     },
     cafeteria: {
       title: 'Cafetería',
-      goal: 'Oriente la elección del café y acompañe al cliente después de la compra.',
       posts: [
         {
           stage: 'atraer', title: 'El café que va con su gusto', format: 'Carrusel',
@@ -132,7 +129,6 @@ const EsteliContenidoRubros = (() => {
     },
     finca: {
       title: 'Finca / tour',
-      goal: 'Prepare al visitante para decidir, consultar cupos y disfrutar el recorrido.',
       posts: [
         {
           stage: 'atraer', title: 'Qué llevar a una caminata', format: 'Carrusel',
@@ -173,7 +169,6 @@ const EsteliContenidoRubros = (() => {
     },
     artesania: {
       title: 'Artesanía',
-      goal: 'Explique el valor de cada pieza y oriente su elección y cuidado.',
       posts: [
         {
           stage: 'atraer', title: 'De la materia prima a la pieza', format: 'Reel',
@@ -216,57 +211,134 @@ const EsteliContenidoRubros = (() => {
 
   const selectedByBusiness = new Map();
 
-  function renderPost(post) {
+  const gallery = {
+    hospedaje: {
+      imageOrder:[1,2,3,4,2],
+      descriptions:['Habitación con dos camas','Entrada de un alojamiento','Desayuno servido en el corredor','Entrada a una habitación'],
+      actions:['Guardar la guía','Compartir el Reel','Consultar servicios','Solicitar cotización','Guardar indicaciones']
+    },
+    restaurante: {
+      imageOrder:[1,3,2,4,3],
+      descriptions:['Plato servido en la mesa','Manos de un cocinero sirviendo un plato','Mesa familiar en un restaurante','Selección de platos de la casa'],
+      actions:['Guardar el Reel','Compartir la guía','Consultar ingredientes','Solicitar una mesa','Enviar una opinión']
+    },
+    cafeteria: {
+      imageOrder:[3,1,4,2,4],
+      descriptions:['Preparación de café de filtro','Barra de una cafetería','Café servido con repostería','Granos de café, bolsa y taza'],
+      actions:['Guardar la guía','Compartir el Reel','Consultar sobre la molienda','Consultar un pedido','Guardar las recomendaciones']
+    },
+    finca: {
+      imageOrder:[1,2,4,2,3],
+      descriptions:['Sendero en un bosque nuboso','Granos secándose en una finca','Botas y equipo para una caminata','Cascada en el bosque'],
+      actions:['Guardar la lista','Compartir el recorrido','Consultar la dificultad','Solicitar una propuesta','Compartir la guía']
+    },
+    artesania: {
+      imageOrder:[2,1,3,4,3],
+      descriptions:['Piezas de cerámica y tejidos','Manos moldeando una pieza de arcilla','Detalle de una taza de barro','Artesanías envueltas con hilo'],
+      actions:['Compartir el proceso','Guardar la guía','Preguntar por una pieza','Solicitar una cotización','Guardar los cuidados']
+    }
+  };
+
+  function photo(slug, index) {
+    const entry = gallery[slug];
+    const number = entry.imageOrder[index];
+    return {
+      src:`assets/esteli-contenido/${slug}-${number}.webp`,
+      description:entry.descriptions[number-1]
+    };
+  }
+
+  function sceneText(post, scene) {
+    return [post.hook,post.value,post.action][scene];
+  }
+
+  function renderPost(slug, index, scene=0) {
+    const post = businesses[slug].posts[index];
     const stage = stages[post.stage];
-    return `<div class="content-lab-post-head">
-      <span class="content-lab-stage" data-stage="${post.stage}">${stage.label}</span>
-      <p>${stage.description}</p>
-    </div>
-    <h2>${post.title}</h2>
-    <div class="content-lab-detail">
-      <dl class="content-lab-brief">
-        <div><dt>Formato</dt><dd>${post.format}</dd></div>
-        <div><dt>Qué mostrar</dt><dd>${post.visual}</dd></div>
-        <div><dt>Qué medir</dt><dd>${post.metric}</dd></div>
-      </dl>
-      <article class="content-lab-copy" aria-label="Ejemplo de publicación">
-        <h3>Ejemplo de publicación</h3>
-        <dl>
-          <div><dt>Gancho</dt><dd>${post.hook}</dd></div>
-          <div><dt>Aporte útil</dt><dd>${post.value}</dd></div>
-          <div><dt>Llamada a la acción</dt><dd>${post.action}</dd></div>
+    const isPortrait = post.format === 'Reel' || post.format.startsWith('Historia');
+    const hasScenes = isPortrait || post.format === 'Carrusel';
+    const format = isPortrait ? 'portrait' : hasScenes ? 'carousel' : 'photo';
+    const image = photo(slug,index);
+    return `<article class="content-lab-hero" data-scene="${scene}" data-format="${format}" data-idea="${index}" aria-label="Ejemplo de publicación">
+        <div class="content-lab-media"${isPortrait ? ` style="--media-image:url('${image.src}')"` : ''}>
+          <div class="content-lab-image-frame"><img class="content-lab-photo" src="${image.src}" alt="${image.description}"></div>
+          ${hasScenes ? `<div class="content-lab-scenes" role="group" aria-label="Partes del ejemplo">
+            ${['Gancho','Aporte','Acción'].map((label,i)=>`<button type="button" data-content-scene="${i}" aria-pressed="${i===scene}">${label}</button>`).join('')}
+          </div>` : ''}
+        </div>
+        <div class="content-lab-main-copy">
+          <div class="content-lab-post-head">
+            <span class="content-lab-stage" data-stage="${post.stage}">${stage.label}</span>
+            <span class="content-lab-format">${post.format}</span>
+          </div>
+          <h2>${post.title}</h2>
+          <p class="content-lab-hook" aria-live="polite">${sceneText(post,scene)}</p>
+          <p class="content-lab-action"><span aria-hidden="true">↗</span> ${gallery[slug].actions[index]}</p>
+        </div>
+      </article>`;
+  }
+
+  function renderDetails(post) {
+    return `<details class="content-lab-detail">
+      <summary>Cómo está hecha</summary>
+      <div class="content-lab-explainer">
+        <dl class="content-lab-brief">
+          <div><dt>${stages[post.stage].label}</dt><dd>${stages[post.stage].description}</dd></div>
+          <div><dt>Formato</dt><dd>${post.format}</dd></div>
+          <div><dt>Qué mostrar</dt><dd>${post.visual}</dd></div>
+          <div><dt>Qué medir</dt><dd>${post.metric}</dd></div>
         </dl>
-      </article>
-    </div>`;
+        <article class="content-lab-copy" aria-label="Texto completo de ejemplo">
+          <h3>Texto completo de ejemplo</h3>
+          <dl>
+            <div><dt>Gancho</dt><dd>${post.hook}</dd></div>
+            <div><dt>Aporte útil</dt><dd>${post.value}</dd></div>
+            <div><dt>Llamada a la acción</dt><dd>${post.action}</dd></div>
+          </dl>
+        </article>
+      </div>
+      <p class="content-lab-note">Imágenes ilustrativas generadas para el taller. Adapte el ejemplo a los servicios reales de su negocio. <a href="https://www.hubspot.es/inbound-marketing" target="_blank" rel="noopener noreferrer">Metodología inbound de HubSpot ↗</a></p>
+    </details>`;
   }
 
   function render(demo, slug) {
     const business = businesses[slug];
-    const selected = selectedByBusiness.get(slug) ?? 0;
+    const {index:selected,scene} = selectedByBusiness.get(slug) ?? {index:0,scene:0};
     demo.innerHTML = `<section class="content-lab" aria-label="Simulador de marketing de contenidos">
-      <nav class="content-lab-nav" aria-label="Tipos de negocio">${Object.entries(businesses).map(([key,item]) =>
-        `<a href="#4/${key}"${key===slug?' aria-current="page"':''}>${item.title}</a>`).join('')}</nav>
-      <div class="content-lab-intro">
-        <p class="content-lab-goal">${business.goal}</p>
-        <p>Explore cinco publicaciones para atraer visitantes, atender sus consultas y acompañarlos después de la compra o la visita.</p>
+      <div class="content-lab-top">
+        <nav class="content-lab-nav" aria-label="Tipos de negocio">${Object.entries(businesses).map(([key,item]) =>
+          `<a href="#4/${key}"${key===slug?' aria-current="page"':''}>${item.title}</a>`).join('')}</nav>
       </div>
-      <div class="content-lab-body">
-        <div class="content-lab-list" role="group" aria-label="Ejemplos de publicaciones">${business.posts.map((post,index) =>
-          `<button type="button" data-content-post="${index}" aria-pressed="${index===selected}" aria-controls="content-lab-preview">
-            <span>${post.title}</span><small>${stages[post.stage].label} · ${post.format}</small>
-          </button>`).join('')}</div>
-        <section class="content-lab-preview" id="content-lab-preview" aria-label="Publicación seleccionada" aria-live="polite">${renderPost(business.posts[selected])}</section>
-      </div>
-      <p class="content-lab-note">Ejemplos de práctica. Adapte el texto al negocio y a los servicios que ofrece. <a href="https://www.hubspot.es/inbound-marketing" target="_blank" rel="noopener noreferrer">Metodología inbound de HubSpot ↗</a></p>
+      <section class="content-lab-preview" id="content-lab-preview" aria-label="Publicación seleccionada">${renderPost(slug,selected,scene)}</section>
+      <div class="content-lab-list" role="group" aria-label="Ejemplos de publicaciones">${business.posts.map((post,index) =>
+        `<button type="button" data-content-post="${index}" aria-pressed="${index===selected}" aria-controls="content-lab-preview">
+          <img src="${photo(slug,index).src}" alt=""><span>${post.title}</span>
+        </button>`).join('')}</div>
+      <div class="content-lab-details">${renderDetails(business.posts[selected])}</div>
+      <p class="content-lab-announcement" role="status"></p>
     </section>`;
     const preview = demo.querySelector('#content-lab-preview');
+    const details = demo.querySelector('.content-lab-details');
     const options = Array.from(demo.querySelectorAll('[data-content-post]'));
-    options.forEach(option => option.addEventListener('click', () => {
+    preview.addEventListener('click', event => {
+      const option = event.target.closest('[data-content-scene]');
+      if (!option || option.getAttribute('aria-pressed') === 'true') return;
+      const index = selectedByBusiness.get(slug)?.index ?? 0;
+      const scene = Number(option.dataset.contentScene);
+      selectedByBusiness.set(slug,{index,scene});
+      preview.querySelector('.content-lab-hero').dataset.scene = scene;
+      preview.querySelector('.content-lab-hook').textContent = sceneText(business.posts[index],scene);
+      preview.querySelectorAll('[data-content-scene]').forEach(candidate => candidate.setAttribute('aria-pressed',String(candidate===option)));
+    });
+    options.forEach(option => option.addEventListener('click', event => {
       if (option.getAttribute('aria-pressed') === 'true') return;
       const index = Number(option.dataset.contentPost);
-      selectedByBusiness.set(slug,index);
+      selectedByBusiness.set(slug,{index,scene:0});
       options.forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === option)));
-      preview.innerHTML = renderPost(business.posts[index]);
+      preview.innerHTML = renderPost(slug,index);
+      details.innerHTML = renderDetails(business.posts[index]);
+      demo.querySelector('.content-lab-announcement').textContent = `Publicación seleccionada: ${business.posts[index].title}`;
+      if (event.detail && preview.getBoundingClientRect().top < 0) preview.scrollIntoView({block:'start'});
     }));
   }
 
